@@ -1,4 +1,4 @@
-﻿namespace Web.Api.DTO;
+﻿namespace Web.DataAccess.DTO;
 
 public class SubjectDTO
 {

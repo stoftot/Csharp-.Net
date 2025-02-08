@@ -1,4 +1,4 @@
-﻿namespace Web.Api.Models;
+﻿namespace Web.DataAccess.Models;
 
 public class ClassRoom
 {

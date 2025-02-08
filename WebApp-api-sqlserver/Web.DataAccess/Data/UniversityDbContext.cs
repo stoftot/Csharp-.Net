@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Web.Api.Models;
+using Web.DataAccess.Models;
 
-namespace Web.Api.Data;
+namespace Web.DataAccess.Data;
 
 public class UniversityDbContext(DbContextOptions dbContextOptions) : DbContext(dbContextOptions)
 {
