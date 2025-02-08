@@ -17,7 +17,7 @@ public class SubjectRepository(UniversityDbContext context)
             .Select(s => new SubjectDTO { Code = s.Code, Name = s.Name })
             .FirstAsync();
 
-    public async void CreateSubject(CreateSubjectDTO dto)
+    public async Task CreateSubject(CreateSubjectDTO dto)
     {
         var subject = new Subject
         {

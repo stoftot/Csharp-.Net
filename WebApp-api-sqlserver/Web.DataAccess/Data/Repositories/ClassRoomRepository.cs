@@ -25,7 +25,7 @@ public class ClassRoomRepository(UniversityDbContext context)
             })
             .FirstAsync();
 
-    public async void CreateClassRoom(ClassRoomDTO classRoomDto)
+    public async Task CreateClassRoom(ClassRoomDTO classRoomDto)
     {
         var classRoom = new ClassRoom
         {

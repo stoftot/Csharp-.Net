@@ -17,7 +17,7 @@ public class TeacherRepository(UniversityDbContext context)
             .Select(t => new TeacherDTO { Id = t.Id, Name = t.Name })
             .FirstAsync();
 
-    public async void CreateTeacher(string name)
+    public async Task CreateTeacher(string name)
     {
         var teacher = new Teacher
         {

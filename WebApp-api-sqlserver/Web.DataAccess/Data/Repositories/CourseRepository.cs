@@ -27,7 +27,7 @@ public class CourseRepository(UniversityDbContext context)
             })
             .FirstAsync();
 
-    public async void CreateCourse(CourseDTO courseDto)
+    public async Task CreateCourse(CourseDTO courseDto)
     {
         var course = new Course
         {
