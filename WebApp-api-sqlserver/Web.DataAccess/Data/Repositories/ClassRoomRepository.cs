@@ -15,7 +15,7 @@ public class ClassRoomRepository(UniversityDbContext context)
             })
             .ToListAsync();
     
-    public async Task<IEnumerable<ClassRoomDTO>> GetClassRoom(string code) =>
+    public async Task<ClassRoomDTO> GetClassRoom(string code) =>
         await context.ClassRooms
             .Where(c => c.Code == ClassRoom.NormalizeCode(code))
             .Select(c => new ClassRoomDTO()
@@ -23,7 +23,7 @@ public class ClassRoomRepository(UniversityDbContext context)
                 Code = c.Code,
                 Capacity = c.Capacity
             })
-            .ToListAsync();
+            .FirstAsync();
 
     public async void CreateClassRoom(ClassRoomDTO classRoomDto)
     {

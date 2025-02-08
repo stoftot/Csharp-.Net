@@ -11,11 +11,11 @@ public class SubjectRepository(UniversityDbContext context)
             .Select(s => new SubjectDTO { Code = s.Code, Name = s.Name })
             .ToListAsync();
 
-    public async Task<IEnumerable<SubjectDTO>> GetSubject(string code) =>
+    public async Task<SubjectDTO> GetSubject(string code) =>
         await context.Subjects
             .Where(s => s.Code == Subject.NormalizeCode(code))
             .Select(s => new SubjectDTO { Code = s.Code, Name = s.Name })
-            .ToListAsync();
+            .FirstAsync();
 
     public async void CreateSubject(SubjectDTO subjectDto)
     {
