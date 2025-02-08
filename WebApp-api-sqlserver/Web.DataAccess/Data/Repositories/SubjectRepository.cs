@@ -17,12 +17,12 @@ public class SubjectRepository(UniversityDbContext context)
             .Select(s => new SubjectDTO { Code = s.Code, Name = s.Name })
             .FirstAsync();
 
-    public async void CreateSubject(SubjectDTO subjectDto)
+    public async void CreateSubject(CreateSubjectDTO dto)
     {
         var subject = new Subject
         {
-            Code = subjectDto.Code,
-            Name = subjectDto.Name
+            Code = dto.Code,
+            Name = dto.Name
         };
 
         await context.Subjects.AddAsync(subject);
