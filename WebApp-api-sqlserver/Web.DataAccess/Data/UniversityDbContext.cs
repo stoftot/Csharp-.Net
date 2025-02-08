@@ -52,9 +52,9 @@ public class UniversityDbContext(DbContextOptions dbContextOptions) : DbContext(
             entity.Property(c => c.Capacity)
                 .IsRequired();
 
-            entity.HasOne(c => c.CourseAdminestre)
+            entity.HasOne(c => c.CourseAdministrator)
                 .WithMany(t => t.Courses)
-                .HasForeignKey(c => c.CourseAdminestreId)
+                .HasForeignKey(c => c.CourseAdministratorId)
                 .OnDelete(DeleteBehavior.NoAction);
             entity.HasOne(c => c.Teacher)
                 .WithMany()
