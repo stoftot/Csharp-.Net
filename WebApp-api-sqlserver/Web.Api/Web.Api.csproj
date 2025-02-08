@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Migrations\" />
+      <ProjectReference Include="..\Web.DataAccess\Web.DataAccess.csproj" />
     </ItemGroup>
 
 </Project>
