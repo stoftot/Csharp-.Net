@@ -11,8 +11,8 @@ using Web.DataAccess.Data;
 namespace Web.Api.Migrations
 {
     [DbContext(typeof(UniversityDbContext))]
-    [Migration("20250208161739_initialMigration")]
-    partial class initialMigration
+    [Migration("20250208231302_MovedProjects")]
+    partial class MovedProjects
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,7 @@ namespace Web.Api.Migrations
                     b.ToTable("SubjectTeacher");
                 });
 
-            modelBuilder.Entity("Web.Api.Models.ClassRoom", b =>
+            modelBuilder.Entity("Api.DataAccess.Models.ClassRoom", b =>
                 {
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(450)");
@@ -52,7 +52,7 @@ namespace Web.Api.Migrations
                     b.ToTable("ClassRooms");
                 });
 
-            modelBuilder.Entity("Web.Api.Models.Course", b =>
+            modelBuilder.Entity("Api.DataAccess.Models.Course", b =>
                 {
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(450)");
@@ -63,7 +63,7 @@ namespace Web.Api.Migrations
                     b.Property<string>("ClassRoomCode")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("CourseAdminestreId")
+                    b.Property<int?>("CourseAdministratorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -77,14 +77,14 @@ namespace Web.Api.Migrations
 
                     b.HasIndex("ClassRoomCode");
 
-                    b.HasIndex("CourseAdminestreId");
+                    b.HasIndex("CourseAdministratorId");
 
                     b.HasIndex("TeacherId");
 
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("Web.Api.Models.Subject", b =>
+            modelBuilder.Entity("Api.DataAccess.Models.Subject", b =>
                 {
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(450)");
@@ -98,7 +98,7 @@ namespace Web.Api.Migrations
                     b.ToTable("Subjects");
                 });
 
-            modelBuilder.Entity("Web.Api.Models.Teacher", b =>
+            modelBuilder.Entity("Api.DataAccess.Models.Teacher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -117,44 +117,44 @@ namespace Web.Api.Migrations
 
             modelBuilder.Entity("SubjectTeacher", b =>
                 {
-                    b.HasOne("Web.Api.Models.Subject", null)
+                    b.HasOne("Api.DataAccess.Models.Subject", null)
                         .WithMany()
                         .HasForeignKey("SubjectsCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Web.Api.Models.Teacher", null)
+                    b.HasOne("Api.DataAccess.Models.Teacher", null)
                         .WithMany()
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Web.Api.Models.Course", b =>
+            modelBuilder.Entity("Api.DataAccess.Models.Course", b =>
                 {
-                    b.HasOne("Web.Api.Models.ClassRoom", "ClassRoom")
+                    b.HasOne("Api.DataAccess.Models.ClassRoom", "ClassRoom")
                         .WithMany()
                         .HasForeignKey("ClassRoomCode")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Web.Api.Models.Teacher", "CourseAdminestre")
+                    b.HasOne("Api.DataAccess.Models.Teacher", "CourseAdministrator")
                         .WithMany("Courses")
-                        .HasForeignKey("CourseAdminestreId")
+                        .HasForeignKey("CourseAdministratorId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Web.Api.Models.Teacher", "Teacher")
+                    b.HasOne("Api.DataAccess.Models.Teacher", "Teacher")
                         .WithMany()
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("ClassRoom");
 
-                    b.Navigation("CourseAdminestre");
+                    b.Navigation("CourseAdministrator");
 
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("Web.Api.Models.Teacher", b =>
+            modelBuilder.Entity("Api.DataAccess.Models.Teacher", b =>
                 {
                     b.Navigation("Courses");
                 });

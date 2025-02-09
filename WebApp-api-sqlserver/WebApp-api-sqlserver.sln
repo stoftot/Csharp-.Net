@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{4BE1A7E3-B368-45D9-BA3B-7B99019A6CBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{4BE1A7E3-B368-45D9-BA3B-7B99019A6CBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Api", "Web.Api\Web.Api.csproj", "{E0F5E037-6287-4383-A232-C3B8D0E916A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{E0F5E037-6287-4383-A232-C3B8D0E916A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.DataAccess", "Web.DataAccess\Web.DataAccess.csproj", "{070D53F0-E192-493C-973A-11DE2E511798}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.DataAccess", "Api.DataAccess\Api.DataAccess.csproj", "{070D53F0-E192-493C-973A-11DE2E511798}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
