@@ -12,21 +12,21 @@ public class SubjectController(SubjectRepository subjectRepository) : Controller
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var subjects = subjectRepository.GetAllSubjects();
+        var subjects = await subjectRepository.GetAllSubjects();
         return Ok(subjects);
     }
 
     [HttpGet("{code}")]
     public async Task<IActionResult> GetSubject([FromRoute] string code)
     {
-        var subject = subjectRepository.GetSubject(code);
+        var subject = await subjectRepository.GetSubject(code);
         return Ok(subject);
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateSubject([FromBody] CreateSubjectDTO dto)
     {
-        subjectRepository.CreateSubject(dto);
+        await subjectRepository.CreateSubject(dto);
         return Ok();
     }
 }

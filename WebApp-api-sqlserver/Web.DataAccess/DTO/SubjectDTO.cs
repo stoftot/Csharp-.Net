@@ -15,13 +15,13 @@ public class CreateSubjectDTO(string name)
 
     private static string GenerateCode(string name)
     {
-        var chars = name.Split("");
+        var chars = name.ToCharArray();
         var code = new StringBuilder();
         
         for (int i = 0; i < chars.Length; i++)
         {
-          if(i % 3 == 0) continue;
-          code.Append(chars[i].ToUpper());
+          if(i % 3 == 0)
+              code.Append(char.ToUpper(chars[i]));
         }
 
         return code.ToString();
