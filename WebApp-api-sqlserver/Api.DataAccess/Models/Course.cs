@@ -17,16 +17,5 @@ public class Course
     public string? ClassRoomCode { get; set; }
     public ClassRoom? ClassRoom { get; set; }
     
-    public static string GenerateCourseCode(string name)
-    {
-        var code = new StringBuilder();
-        var parts = name.Split(" ");
-        foreach (var part in parts)
-        {
-            code.Append(part[..1].ToUpper());
-        }
-        return code.ToString();
-    }
-    
     public static string NormalizeCode(string code) => code.ToUpper();
 }

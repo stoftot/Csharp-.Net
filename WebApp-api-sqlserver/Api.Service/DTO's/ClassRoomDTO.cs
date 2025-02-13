@@ -1,4 +1,4 @@
-﻿namespace Web.DataAccess.DTO;
+﻿namespace Api.Service.DTO_s;
 
 public class ClassRoomDTO
 {

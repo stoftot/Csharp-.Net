@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Web.DataAccess.DTO;
+﻿using Api.Service.DTO_s;
+using Microsoft.EntityFrameworkCore;
 using Web.DataAccess.Models;
 
 namespace Web.DataAccess.Data.Repositories;

@@ -1,7 +1,6 @@
 ﻿using System.Text;
-using Web.DataAccess.Models;
 
-namespace Web.DataAccess.DTO;
+namespace Api.Service.DTO_s;
 
 public class CourseDTO
 {
@@ -13,14 +12,21 @@ public class CourseDTO
     public TeacherDTO? Teacher { get; set; }
     public ClassRoomDTO? ClassRoom { get; set; }
 
-    public CourseDTO()
-    {
-    }
-
     public CourseDTO(string name, int capacity)
     {
-        Code = Course.GenerateCourseCode(name);
+        Code = GenerateCourseCode(name);
         Name = name;
         Capacity = capacity;
+    }
+    
+    public static string GenerateCourseCode(string name)
+    {
+        var code = new StringBuilder();
+        var parts = name.Split(" ");
+        foreach (var part in parts)
+        {
+            code.Append(part[..1].ToUpper());
+        }
+        return code.ToString();
     }
 }
