@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{3B28489A-933
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Service", "Api.Service\Api.Service.csproj", "{810A6010-BF13-48B3-BFF4-75DBAA2F2F49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.DataAcsses", "Web.DataAcsses\Web.DataAcsses.csproj", "{3DC84EF4-A4D5-4E84-9939-B20FA4DE12D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.DataAccess", "Web.DataAccess\Web.DataAccess.csproj", "{3DC84EF4-A4D5-4E84-9939-B20FA4DE12D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Service", "Web.Service\Web.Service.csproj", "{9B1B12F3-2953-443E-AB8A-26787760849C}"
 EndProject
