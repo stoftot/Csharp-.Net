@@ -2,7 +2,7 @@
 
 namespace Api.Service.DTO_s;
 
-public class SubjectDTO
+public class GetSubjectDTO
 {
     public required string Code { get; set; }
     public required string Name { get; set; }

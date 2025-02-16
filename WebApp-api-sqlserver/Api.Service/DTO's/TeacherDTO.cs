@@ -1,9 +1,14 @@
 ﻿namespace Api.Service.DTO_s;
 
-public class TeacherDTO
+public class GetTeacherDTO
 {
     public required int Id { get; set; }
     public required string Name { get; set; }
-    public IEnumerable<SubjectDTO>? Subjects { get; set; }
-    public IEnumerable<CourseDTO>? Courses { get; set; }
+    public IEnumerable<GetSubjectDTO>? Subjects { get; set; }
+    public IEnumerable<GetCourseDTO>? Courses { get; set; }
+}
+
+public class CreateTeacherDTO
+{
+    public required string Name { get; set; }
 }
