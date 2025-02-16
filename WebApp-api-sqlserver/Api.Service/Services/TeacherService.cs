@@ -1,4 +1,6 @@
 ﻿using Api.Service.DTO_s;
+using Api.Service.Exceptions;
+using Api.Service.Repository.Interfaces;
 
 namespace Api.Service.Services;
 
@@ -9,20 +11,32 @@ public interface ITeacherService
     public Task<GetTeacherDTO> CreateTeacher(CreateTeacherDTO dto);
 }
 
-public class TeacherService(ITeacherService teacherService) : ITeacherService
+public class TeacherService(ITeacherRepository teacherRepository) : ITeacherService
 {
     public Task<IEnumerable<GetTeacherDTO>> GetAllTeachers()
     {
-        return teacherService.GetAllTeachers();
+        return teacherRepository.GetAllTeachers();
     }
 
     public Task<GetTeacherDTO> GetTeacher(int id)
     {
-        return teacherService.GetTeacher(id);
+        try
+        {
+            var teacher = teacherRepository.GetTeacher(id);
+            if (teacher == null)
+                throw new IdentifierDidntMatchAnyEntriesException
+                    ($"There is no teacher whit the following id: {id}", $"{id}");
+            return teacher!;
+        }
+        catch (InvalidOperationException e)
+        {
+            throw new MultipleEntriesWhitSameIdentifierException
+                ($"There are multiple teachers whit the following id: {id}", $"{id}", e);
+        }
     }
 
     public Task<GetTeacherDTO> CreateTeacher(CreateTeacherDTO dto)
     {
-        return teacherService.CreateTeacher(dto);
+        return teacherRepository.CreateTeacher(dto);
     }
 }

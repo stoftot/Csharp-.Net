@@ -1,4 +1,5 @@
 ﻿using Api.Service.DTO_s;
+using Api.Service.Exceptions;
 using Api.Service.Repository.Interfaces;
 
 namespace Api.Service.Services;
@@ -19,7 +20,19 @@ public class ClassRoomService(IClassRoomRepository classRoomRepository) : IClass
 
     public Task<GetClassRoomDTO> GetClassRoom(string code)
     {
-        return classRoomRepository.GetClassRoom(code);
+        try
+        {
+            var classRoom = classRoomRepository.GetClassRoom(code);
+            if (classRoom == null)
+                throw new IdentifierDidntMatchAnyEntriesException
+                    ($"There is no class room whit the following code: {code}", code);
+            return classRoom!;
+        }
+        catch (InvalidOperationException e)
+        {
+            throw new MultipleEntriesWhitSameIdentifierException
+                ($"There are multiple class rooms whit the following code: {code}", code, e);
+        }
     }
 
     public Task<GetClassRoomDTO> CreateClassRoom(CreateClassRoomDTO dto)
