@@ -4,7 +4,7 @@ namespace Api.Service.Repository.Interfaces;
 
 public interface ICourseRepository
 {
-    public Task<IEnumerable<GetCourseDTO>> GetAllCourses();
-    public Task<GetCourseDTO?> GetCourse(string code);
-    public Task<GetCourseDTO> CreateCourse(CreateCourseDTO dto);
+    public Task<IEnumerable<GetCourseDto>> GetAllCourses();
+    public Task<GetCourseDto?> GetCourse(string code);
+    public Task<GetCourseDto> CreateCourse(CreateCourseDto dto);
 }

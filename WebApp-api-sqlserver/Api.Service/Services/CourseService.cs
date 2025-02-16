@@ -6,19 +6,19 @@ namespace Api.Service.Services;
 
 public interface ICourseService
 {
-    public Task<IEnumerable<GetCourseDTO>> GetAllCourses();
-    public Task<GetCourseDTO> GetCourse(string code);
-    public Task<GetCourseDTO> CreateCourse(CreateCourseDTO dto);
+    public Task<IEnumerable<GetCourseDto>> GetAllCourses();
+    public Task<GetCourseDto> GetCourse(string code);
+    public Task<GetCourseDto> CreateCourse(CreateCourseDto dto);
 }
 
 public class CourseService(ICourseRepository courseRepository) : ICourseService
 {
-    public Task<IEnumerable<GetCourseDTO>> GetAllCourses()
+    public Task<IEnumerable<GetCourseDto>> GetAllCourses()
     {
         return courseRepository.GetAllCourses();
     }
 
-    public async Task<GetCourseDTO> GetCourse(string code)
+    public async Task<GetCourseDto> GetCourse(string code)
     {
         try
         {
@@ -35,7 +35,7 @@ public class CourseService(ICourseRepository courseRepository) : ICourseService
         }
     }
 
-    public Task<GetCourseDTO> CreateCourse(CreateCourseDTO dto)
+    public Task<GetCourseDto> CreateCourse(CreateCourseDto dto)
     {
         return courseRepository.CreateCourse(dto);
     }

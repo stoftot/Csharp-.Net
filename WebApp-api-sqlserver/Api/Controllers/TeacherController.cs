@@ -14,7 +14,7 @@ public class TeacherController
     public async Task<IActionResult> GetAll()
     {
         var teachers = (await teacherService.GetAllTeachers())
-            .Select(GetTeacherDTO.ConvertServiceDTO);
+            .Select(GetTeacherDto.ConvertServiceDto);
         return Ok(teachers);
     }
 
@@ -24,7 +24,7 @@ public class TeacherController
         try
         {
             var teacher = await teacherService.GetTeacher(id);
-            return Ok(GetTeacherDTO.ConvertServiceDTO(teacher));
+            return Ok(GetTeacherDto.ConvertServiceDto(teacher));
         }
         catch (IdentifierDidntMatchAnyEntriesException e)
         {
@@ -42,10 +42,10 @@ public class TeacherController
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateTeacherDTO dto)
+    public async Task<IActionResult> Create([FromBody] CreateTeacherDto dto)
     {
-        var createdTeacher = await teacherService.CreateTeacher(dto.ConvetToServiceDTO());
-        var newTeacher = GetTeacherDTO.ConvertServiceDTO(createdTeacher)!;
+        var createdTeacher = await teacherService.CreateTeacher(dto.ConvetToServiceDto());
+        var newTeacher = GetTeacherDto.ConvertServiceDto(createdTeacher)!;
         return CreatedAtAction(nameof(GetOne), new { id = newTeacher.Id }, newTeacher);
     }
 }

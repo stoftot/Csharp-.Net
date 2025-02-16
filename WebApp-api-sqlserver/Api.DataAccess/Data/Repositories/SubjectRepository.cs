@@ -7,18 +7,18 @@ namespace Web.DataAccess.Data.Repositories;
 
 public class SubjectRepository(UniversityDbContext context) : ISubjectRepository
 {
-    public async Task<IEnumerable<GetSubjectDTO>> GetAllSubjects() =>
+    public async Task<IEnumerable<GetSubjectDto>> GetAllSubjects() =>
         await context.Subjects
-            .Select(s => new GetSubjectDTO { Code = s.Code, Name = s.Name })
+            .Select(s => new GetSubjectDto { Code = s.Code, Name = s.Name })
             .ToListAsync();
 
-    public async Task<GetSubjectDTO?> GetSubject(string code) =>
+    public async Task<GetSubjectDto?> GetSubject(string code) =>
         await context.Subjects
             .Where(s => s.Code == Subject.NormalizeCode(code))
-            .Select(s => new GetSubjectDTO { Code = s.Code, Name = s.Name })
+            .Select(s => new GetSubjectDto { Code = s.Code, Name = s.Name })
             .SingleOrDefaultAsync();
 
-    public async Task<GetSubjectDTO> CreateSubject(CreateSubjectDTO dto)
+    public async Task<GetSubjectDto> CreateSubject(CreateSubjectDto dto)
     {
         var subject = new Subject
         {
@@ -29,7 +29,7 @@ public class SubjectRepository(UniversityDbContext context) : ISubjectRepository
         var newSubject = await context.Subjects.AddAsync(subject);
         await context.SaveChangesAsync();
 
-        return new GetSubjectDTO
+        return new GetSubjectDto
         {
             Code = newSubject.Entity.Code,
             Name = newSubject.Entity.Name

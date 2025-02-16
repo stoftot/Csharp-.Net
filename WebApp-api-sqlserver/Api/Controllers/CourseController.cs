@@ -15,7 +15,7 @@ public class CourseController
     public async Task<IActionResult> GetAll()
     {
         var courses = (await courseService.GetAllCourses())
-            .Select(GetCourseDTO.ConvertServiceDTO);
+            .Select(GetCourseDto.ConvertServiceDto);
         return Ok(courses);
     }
 
@@ -25,7 +25,7 @@ public class CourseController
         try
         {
             var course = await courseService.GetCourse(code);
-            return Ok(GetCourseDTO.ConvertServiceDTO(course));
+            return Ok(GetCourseDto.ConvertServiceDto(course));
         }
         catch (IdentifierDidntMatchAnyEntriesException e)
         {
@@ -43,11 +43,11 @@ public class CourseController
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateCourseDTO dto)
+    public async Task<IActionResult> Create([FromBody] CreateCourseDto dto)
     {
         var course = dto.ConvertToServiceDTO();
         var createdCourse = await courseService.CreateCourse(course);
-        var newCourse = GetCourseDTO.ConvertServiceDTO(createdCourse)!;
+        var newCourse = GetCourseDto.ConvertServiceDto(createdCourse)!;
         return CreatedAtAction(nameof(GetOne), new { code = newCourse.Code }, newCourse);
     }
 }

@@ -1,17 +1,17 @@
 ﻿namespace Web.Api.DTO_s;
 
-public class GetTeacherDTO
+public class GetTeacherDto
 {
     public required int Id { get; set; }
     public required string Name { get; set; }
-    public IEnumerable<GetSubjectDTO>? Subjects { get; set; }
-    public IEnumerable<GetCourseDTO>? Courses { get; set; }
+    public IEnumerable<GetSubjectDto>? Subjects { get; set; }
+    public IEnumerable<GetCourseDto>? Courses { get; set; }
 
-    public static GetTeacherDTO? ConvertServiceDTO(global::Api.Service.DTO_s.GetTeacherDTO? dto)
+    public static GetTeacherDto? ConvertServiceDto(global::Api.Service.DTO_s.GetTeacherDto? dto)
     {
         if (dto == null) return null;
         
-        var newDto = new GetTeacherDTO
+        var newDto = new GetTeacherDto
         {
             Id = dto.Id,
             Name = dto.Name
@@ -19,24 +19,24 @@ public class GetTeacherDTO
         
         if (dto.Subjects != null)
         {
-            newDto.Subjects = dto.Subjects.Select(GetSubjectDTO.ConvertServiceDTO)!;
+            newDto.Subjects = dto.Subjects.Select(GetSubjectDto.ConvertServiceDto)!;
         }
         
         if (dto.Courses != null)
         {
-            newDto.Courses = dto.Courses.Select(GetCourseDTO.ConvertServiceDTO)!;
+            newDto.Courses = dto.Courses.Select(GetCourseDto.ConvertServiceDto)!;
         }
 
         return newDto;
     }
 }
 
-public class CreateTeacherDTO
+public class CreateTeacherDto
 {
     public required string Name { get; set; }
 
-    public global::Api.Service.DTO_s.CreateTeacherDTO ConvetToServiceDTO()
+    public global::Api.Service.DTO_s.CreateTeacherDto ConvetToServiceDto()
     {
-        return new global::Api.Service.DTO_s.CreateTeacherDTO(Name);
+        return new global::Api.Service.DTO_s.CreateTeacherDto(Name);
     }
 }

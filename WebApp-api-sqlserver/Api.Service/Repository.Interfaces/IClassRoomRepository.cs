@@ -4,7 +4,7 @@ namespace Api.Service.Repository.Interfaces;
 
 public interface IClassRoomRepository
 {
-    public Task<IEnumerable<GetClassRoomDTO>> GetAllClassRooms();
-    public Task<GetClassRoomDTO?> GetClassRoom(string code);
-    public Task<GetClassRoomDTO> CreateClassRoom(CreateClassRoomDTO dto);
+    public Task<IEnumerable<GetClassRoomDto>> GetAllClassRooms();
+    public Task<GetClassRoomDto?> GetClassRoom(string code);
+    public Task<GetClassRoomDto> CreateClassRoom(CreateClassRoomDto dto);
 }

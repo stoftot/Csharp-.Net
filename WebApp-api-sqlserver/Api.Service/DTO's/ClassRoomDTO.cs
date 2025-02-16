@@ -1,12 +1,12 @@
 ﻿namespace Api.Service.DTO_s;
 
-public class GetClassRoomDTO
+public class GetClassRoomDto
 {
     public required string Code { get; set; }
     public required int Capacity { get; set; }
 }
 
-public class CreateClassRoomDTO(string code, int capacity)
+public class CreateClassRoomDto(string code, int capacity)
 {
     public string Code { get; } = code;
     public int Capacity { get; } = capacity;

@@ -1,14 +1,14 @@
 ﻿namespace Web.Api.DTO_s;
 
-public class GetSubjectDTO
+public class GetSubjectDto
 {
     public required string Code { get; set; }
     public required string Name { get; set; }
 
-    public static GetSubjectDTO? ConvertServiceDTO(global::Api.Service.DTO_s.GetSubjectDTO? dto)
+    public static GetSubjectDto? ConvertServiceDto(global::Api.Service.DTO_s.GetSubjectDto? dto)
     {
         if (dto == null) return null;
-        return new GetSubjectDTO
+        return new GetSubjectDto
         {
             Code = dto.Code,
             Name = dto.Name
@@ -16,12 +16,12 @@ public class GetSubjectDTO
     }
 }
 
-public class CreateSubjectDTO
+public class CreateSubjectDto
 {
     public required string Name { get; set; }
 
-    public global::Api.Service.DTO_s.CreateSubjectDTO ConvertToServiceDTO()
+    public global::Api.Service.DTO_s.CreateSubjectDto ConvertToServiceDto()
     {
-        return new global::Api.Service.DTO_s.CreateSubjectDTO(Name);
+        return new global::Api.Service.DTO_s.CreateSubjectDto(Name);
     }
 }

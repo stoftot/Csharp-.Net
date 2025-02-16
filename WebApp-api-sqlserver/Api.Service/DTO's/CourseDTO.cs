@@ -2,18 +2,18 @@
 
 namespace Api.Service.DTO_s;
 
-public class GetCourseDTO
+public class GetCourseDto
 {
     public required string Code { get; set; }
     public required string Name { get; set; }
     public required int Capacity { get; set; }
 
-    public GetTeacherDTO? CourseAdministrator { get; set; }
-    public GetTeacherDTO? Teacher { get; set; }
-    public GetClassRoomDTO? ClassRoom { get; set; }
+    public GetTeacherDto? CourseAdministrator { get; set; }
+    public GetTeacherDto? Teacher { get; set; }
+    public GetClassRoomDto? ClassRoom { get; set; }
 }
 
-public class CreateCourseDTO(string name, int capacity)
+public class CreateCourseDto(string name, int capacity)
 {
     public string Code { get; } = GenerateCourseCode(name);
     public string Name { get; } = name;

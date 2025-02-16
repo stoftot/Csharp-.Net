@@ -6,19 +6,19 @@ namespace Api.Service.Services;
 
 public interface IClassRoomService
 {
-    public Task<IEnumerable<GetClassRoomDTO>> GetAllClassRooms();
-    public Task<GetClassRoomDTO> GetClassRoom(string code);
-    public Task<GetClassRoomDTO> CreateClassRoom(CreateClassRoomDTO dto);
+    public Task<IEnumerable<GetClassRoomDto>> GetAllClassRooms();
+    public Task<GetClassRoomDto> GetClassRoom(string code);
+    public Task<GetClassRoomDto> CreateClassRoom(CreateClassRoomDto dto);
 }
 
 public class ClassRoomService(IClassRoomRepository classRoomRepository) : IClassRoomService
 {
-    public Task<IEnumerable<GetClassRoomDTO>> GetAllClassRooms()
+    public Task<IEnumerable<GetClassRoomDto>> GetAllClassRooms()
     {
         return classRoomRepository.GetAllClassRooms();
     }
 
-    public async Task<GetClassRoomDTO> GetClassRoom(string code)
+    public async Task<GetClassRoomDto> GetClassRoom(string code)
     {
         try
         {
@@ -35,7 +35,7 @@ public class ClassRoomService(IClassRoomRepository classRoomRepository) : IClass
         }
     }
 
-    public Task<GetClassRoomDTO> CreateClassRoom(CreateClassRoomDTO dto)
+    public Task<GetClassRoomDto> CreateClassRoom(CreateClassRoomDto dto)
     {
         return classRoomRepository.CreateClassRoom(dto);
     }

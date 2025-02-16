@@ -7,26 +7,26 @@ namespace Web.DataAccess.Data.Repositories;
 
 public class ClassRoomRepository(UniversityDbContext context) : IClassRoomRepository
 {
-    public async Task<IEnumerable<GetClassRoomDTO>> GetAllClassRooms() =>
+    public async Task<IEnumerable<GetClassRoomDto>> GetAllClassRooms() =>
         await context.ClassRooms
-            .Select(c => new GetClassRoomDTO()
+            .Select(c => new GetClassRoomDto()
             {
                 Code = c.Code,
                 Capacity = c.Capacity
             })
             .ToListAsync();
     
-    public async Task<GetClassRoomDTO?> GetClassRoom(string code) =>
+    public async Task<GetClassRoomDto?> GetClassRoom(string code) =>
         await context.ClassRooms
             .Where(c => c.Code == ClassRoom.NormalizeCode(code))
-            .Select(c => new GetClassRoomDTO()
+            .Select(c => new GetClassRoomDto()
             {
                 Code = c.Code,
                 Capacity = c.Capacity
             })
             .SingleOrDefaultAsync();
 
-    public async Task<GetClassRoomDTO> CreateClassRoom(CreateClassRoomDTO classRoomDto)
+    public async Task<GetClassRoomDto> CreateClassRoom(CreateClassRoomDto classRoomDto)
     {
         var classRoom = new ClassRoom
         {
@@ -37,7 +37,7 @@ public class ClassRoomRepository(UniversityDbContext context) : IClassRoomReposi
         var newClassRoom = await context.ClassRooms.AddAsync(classRoom);
         await context.SaveChangesAsync();
 
-        return new GetClassRoomDTO
+        return new GetClassRoomDto
         {
             Code = newClassRoom.Entity.Code,
             Capacity = newClassRoom.Entity.Capacity

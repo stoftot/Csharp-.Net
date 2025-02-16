@@ -6,19 +6,19 @@ namespace Api.Service.Services;
 
 public interface ITeacherService
 {
-    public Task<IEnumerable<GetTeacherDTO>> GetAllTeachers();
-    public Task<GetTeacherDTO> GetTeacher(int id);
-    public Task<GetTeacherDTO> CreateTeacher(CreateTeacherDTO dto);
+    public Task<IEnumerable<GetTeacherDto>> GetAllTeachers();
+    public Task<GetTeacherDto> GetTeacher(int id);
+    public Task<GetTeacherDto> CreateTeacher(CreateTeacherDto dto);
 }
 
 public class TeacherService(ITeacherRepository teacherRepository) : ITeacherService
 {
-    public Task<IEnumerable<GetTeacherDTO>> GetAllTeachers()
+    public Task<IEnumerable<GetTeacherDto>> GetAllTeachers()
     {
         return teacherRepository.GetAllTeachers();
     }
 
-    public async Task<GetTeacherDTO> GetTeacher(int id)
+    public async Task<GetTeacherDto> GetTeacher(int id)
     {
         try
         {
@@ -35,7 +35,7 @@ public class TeacherService(ITeacherRepository teacherRepository) : ITeacherServ
         }
     }
 
-    public Task<GetTeacherDTO> CreateTeacher(CreateTeacherDTO dto)
+    public Task<GetTeacherDto> CreateTeacher(CreateTeacherDto dto)
     {
         return teacherRepository.CreateTeacher(dto);
     }

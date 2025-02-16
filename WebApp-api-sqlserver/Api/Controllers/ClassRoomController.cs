@@ -15,7 +15,7 @@ public class ClassRoomController
     public async Task<IActionResult> GetAll()
     {
         var classRooms = (await classRoomService.GetAllClassRooms())
-            .Select(GetClassRoomDTO.ConvertServiceDTO);
+            .Select(GetClassRoomDto.ConvertServiceDto);
         return Ok(classRooms);
     }
 
@@ -25,7 +25,7 @@ public class ClassRoomController
         try
         {
             var classRoom = await classRoomService.GetClassRoom(code);
-            return Ok(GetClassRoomDTO.ConvertServiceDTO(classRoom));
+            return Ok(GetClassRoomDto.ConvertServiceDto(classRoom));
         }
         catch (IdentifierDidntMatchAnyEntriesException e)
         {
@@ -43,11 +43,11 @@ public class ClassRoomController
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateClassRoomDTO dto)
+    public async Task<IActionResult> Create([FromBody] CreateClassRoomDto dto)
     {
-        var classRoom = dto.ConvertToServiceDTO();
+        var classRoom = dto.ConvertToServiceDto();
         var createdClassRoom = await classRoomService.CreateClassRoom(classRoom);
-        var newClassRoom = GetClassRoomDTO.ConvertServiceDTO(createdClassRoom)!;
+        var newClassRoom = GetClassRoomDto.ConvertServiceDto(createdClassRoom)!;
         return CreatedAtAction(nameof(GetOne),new{code = newClassRoom.Code}, newClassRoom);
     }
 }

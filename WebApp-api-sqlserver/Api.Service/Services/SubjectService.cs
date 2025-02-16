@@ -6,19 +6,19 @@ namespace Api.Service.Services;
 
 public interface ISubjectService
 {
-    public Task<IEnumerable<GetSubjectDTO>> GetAllSubjects();
-    public Task<GetSubjectDTO> GetSubject(string code);
-    public Task<GetSubjectDTO> CreateSubject(CreateSubjectDTO dto);
+    public Task<IEnumerable<GetSubjectDto>> GetAllSubjects();
+    public Task<GetSubjectDto> GetSubject(string code);
+    public Task<GetSubjectDto> CreateSubject(CreateSubjectDto dto);
 }
 
 public class SubjectService(ISubjectRepository subjectRepository) : ISubjectService
 {
-    public Task<IEnumerable<GetSubjectDTO>> GetAllSubjects()
+    public Task<IEnumerable<GetSubjectDto>> GetAllSubjects()
     {
         return subjectRepository.GetAllSubjects();
     }
 
-    public async Task<GetSubjectDTO> GetSubject(string code)
+    public async Task<GetSubjectDto> GetSubject(string code)
     {
         try
         {
@@ -35,7 +35,7 @@ public class SubjectService(ISubjectRepository subjectRepository) : ISubjectServ
         }
     }
 
-    public Task<GetSubjectDTO> CreateSubject(CreateSubjectDTO dto)
+    public Task<GetSubjectDto> CreateSubject(CreateSubjectDto dto)
     {
         return subjectRepository.CreateSubject(dto);
     }

@@ -16,7 +16,7 @@ public class SubjectController
     public async Task<IActionResult> GetAll()
     {
         var subjects = (await subjectRepository.GetAllSubjects())
-            .Select(GetSubjectDTO.ConvertServiceDTO);
+            .Select(GetSubjectDto.ConvertServiceDto);
         return Ok(subjects);
     }
 
@@ -26,7 +26,7 @@ public class SubjectController
         try
         {
             var subject = await subjectRepository.GetSubject(code);
-            return Ok(GetSubjectDTO.ConvertServiceDTO(subject));
+            return Ok(GetSubjectDto.ConvertServiceDto(subject));
         }
         catch (IdentifierDidntMatchAnyEntriesException e)
         {
@@ -44,11 +44,11 @@ public class SubjectController
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateSubject([FromBody] CreateSubjectDTO dto)
+    public async Task<IActionResult> CreateSubject([FromBody] CreateSubjectDto dto)
     {
-        var subject = dto.ConvertToServiceDTO();
+        var subject = dto.ConvertToServiceDto();
         var createdSubject = await subjectRepository.CreateSubject(subject);
-        var newSubject = GetSubjectDTO.ConvertServiceDTO(createdSubject)!;
+        var newSubject = GetSubjectDto.ConvertServiceDto(createdSubject)!;
         return CreatedAtAction(nameof(GetOne), new { code = newSubject.Code }, newSubject);
     }
 }

@@ -7,18 +7,18 @@ namespace Web.DataAccess.Data.Repositories;
 
 public class TeacherRepository(UniversityDbContext context) : ITeacherRepository
 {
-    public async Task<IEnumerable<GetTeacherDTO>> GetAllTeachers() =>
+    public async Task<IEnumerable<GetTeacherDto>> GetAllTeachers() =>
         await context.Teachers
-            .Select(t => new GetTeacherDTO { Id = t.Id, Name = t.Name })
+            .Select(t => new GetTeacherDto { Id = t.Id, Name = t.Name })
             .ToListAsync();
 
-    public async Task<GetTeacherDTO?> GetTeacher(int id) =>
+    public async Task<GetTeacherDto?> GetTeacher(int id) =>
         await context.Teachers
             .Where(t => t.Id == id)
-            .Select(t => new GetTeacherDTO { Id = t.Id, Name = t.Name })
+            .Select(t => new GetTeacherDto { Id = t.Id, Name = t.Name })
             .SingleOrDefaultAsync();
 
-    public async Task<GetTeacherDTO>CreateTeacher(CreateTeacherDTO dto)
+    public async Task<GetTeacherDto>CreateTeacher(CreateTeacherDto dto)
     {
         var teacher = new Teacher
         {
@@ -28,7 +28,7 @@ public class TeacherRepository(UniversityDbContext context) : ITeacherRepository
         var newTeacher = await context.AddAsync(teacher);
         await context.SaveChangesAsync();
         
-        return new GetTeacherDTO
+        return new GetTeacherDto
         {
             Id = newTeacher.Entity.Id,
             Name = newTeacher.Entity.Name

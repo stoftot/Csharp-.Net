@@ -1,14 +1,14 @@
 ﻿namespace Web.Api.DTO_s;
 
-public class GetClassRoomDTO
+public class GetClassRoomDto
 {
     public required string Code { get; set; }
     public required int Capacity { get; set; }
 
-    public static GetClassRoomDTO? ConvertServiceDTO(global::Api.Service.DTO_s.GetClassRoomDTO? dto)
+    public static GetClassRoomDto? ConvertServiceDto(global::Api.Service.DTO_s.GetClassRoomDto? dto)
     {
         if (dto == null) return null;
-        return new GetClassRoomDTO
+        return new GetClassRoomDto
         {
             Code = dto.Code,
             Capacity = dto.Capacity
@@ -16,13 +16,13 @@ public class GetClassRoomDTO
     }
 }
 
-public class CreateClassRoomDTO
+public class CreateClassRoomDto
 {
     public required string Code { get; set; }
     public required int Capacity { get; set; }
 
-    public global::Api.Service.DTO_s.CreateClassRoomDTO ConvertToServiceDTO()
+    public global::Api.Service.DTO_s.CreateClassRoomDto ConvertToServiceDto()
     {
-        return new global::Api.Service.DTO_s.CreateClassRoomDTO(Code, Capacity);
+        return new global::Api.Service.DTO_s.CreateClassRoomDto(Code, Capacity);
     }
 }

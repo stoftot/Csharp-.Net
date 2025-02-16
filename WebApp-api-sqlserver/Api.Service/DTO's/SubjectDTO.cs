@@ -2,13 +2,13 @@
 
 namespace Api.Service.DTO_s;
 
-public class GetSubjectDTO
+public class GetSubjectDto
 {
     public required string Code { get; set; }
     public required string Name { get; set; }
 }
 
-public class CreateSubjectDTO(string name)
+public class CreateSubjectDto(string name)
 {
     public string Code { get; } = GenerateCode(name);
     public string Name { get; } = name;

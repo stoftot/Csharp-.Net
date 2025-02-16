@@ -7,9 +7,9 @@ namespace Web.DataAccess.Data.Repositories;
 
 public class CourseRepository(UniversityDbContext context) : ICourseRepository
 {
-    public async Task<IEnumerable<GetCourseDTO>> GetAllCourses() =>
+    public async Task<IEnumerable<GetCourseDto>> GetAllCourses() =>
         await context.Courses
-            .Select(c => new GetCourseDTO
+            .Select(c => new GetCourseDto
             {
                 Code = c.Code,
                 Name = c.Name,
@@ -17,10 +17,10 @@ public class CourseRepository(UniversityDbContext context) : ICourseRepository
             })
             .ToListAsync();
     
-    public async Task<GetCourseDTO?> GetCourse(string code) =>
+    public async Task<GetCourseDto?> GetCourse(string code) =>
         await context.Courses
             .Where(c => c.Code == Course.NormalizeCode(code))
-            .Select(c => new GetCourseDTO
+            .Select(c => new GetCourseDto
             {
                 Code = c.Code,
                 Name = c.Name,
@@ -28,7 +28,7 @@ public class CourseRepository(UniversityDbContext context) : ICourseRepository
             })
             .SingleOrDefaultAsync();
 
-    public async Task<GetCourseDTO> CreateCourse(CreateCourseDTO courseDto)
+    public async Task<GetCourseDto> CreateCourse(CreateCourseDto courseDto)
     {
         var course = new Course
         {
@@ -40,7 +40,7 @@ public class CourseRepository(UniversityDbContext context) : ICourseRepository
         var newCourse = await context.AddAsync(course);
         await context.SaveChangesAsync();
 
-        return new GetCourseDTO
+        return new GetCourseDto
         {
             Code = newCourse.Entity.Code,
             Name = newCourse.Entity.Name,

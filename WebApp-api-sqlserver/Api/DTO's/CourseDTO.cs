@@ -1,37 +1,37 @@
 ﻿namespace Web.Api.DTO_s;
 
-public class GetCourseDTO
+public class GetCourseDto
 {
     public required string Code { get; set; }
     public required string Name { get; set; }
     public required int Capacity { get; set; }
 
-    public GetTeacherDTO? CourseAdministrator { get; set; }
-    public GetTeacherDTO? Teacher { get; set; }
-    public GetClassRoomDTO? ClassRoom { get; set; }
+    public GetTeacherDto? CourseAdministrator { get; set; }
+    public GetTeacherDto? Teacher { get; set; }
+    public GetClassRoomDto? ClassRoom { get; set; }
 
-    public static GetCourseDTO? ConvertServiceDTO(global::Api.Service.DTO_s.GetCourseDTO? dto)
+    public static GetCourseDto? ConvertServiceDto(global::Api.Service.DTO_s.GetCourseDto? dto)
     {
         if (dto == null) return null;
-        return new GetCourseDTO
+        return new GetCourseDto
         {
             Code = dto.Code,
             Name = dto.Name,
             Capacity = dto.Capacity,
-            CourseAdministrator = GetTeacherDTO.ConvertServiceDTO(dto.CourseAdministrator),
-            Teacher = GetTeacherDTO.ConvertServiceDTO(dto.Teacher),
-            ClassRoom = GetClassRoomDTO.ConvertServiceDTO(dto.ClassRoom)
+            CourseAdministrator = GetTeacherDto.ConvertServiceDto(dto.CourseAdministrator),
+            Teacher = GetTeacherDto.ConvertServiceDto(dto.Teacher),
+            ClassRoom = GetClassRoomDto.ConvertServiceDto(dto.ClassRoom)
         };
     }
 }
 
-public class CreateCourseDTO
+public class CreateCourseDto
 {
     public required string Name { get; set; }
     public required int Capacity { get; set; }
 
-    public global::Api.Service.DTO_s.CreateCourseDTO ConvertToServiceDTO()
+    public global::Api.Service.DTO_s.CreateCourseDto ConvertToServiceDTO()
     {
-        return new global::Api.Service.DTO_s.CreateCourseDTO(Name, Capacity);
+        return new global::Api.Service.DTO_s.CreateCourseDto(Name, Capacity);
     }
 }
