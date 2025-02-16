@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Api.Service.Exceptions;
+using Microsoft.AspNetCore.Mvc;
+using Web.Api.DTO_s;
 using Web.DataAccess.Data.Repositories;
-using Web.DataAccess.DTO;
 
 namespace Web.Api.Controllers;
 
-[Route("api/subject")]
+[Route("api/[controller]s")]
 [ApiController]
 
 public class SubjectController(SubjectRepository subjectRepository) : ControllerBase
@@ -12,21 +13,31 @@ public class SubjectController(SubjectRepository subjectRepository) : Controller
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var subjects = await subjectRepository.GetAllSubjects();
+        var subjects = (await subjectRepository.GetAllSubjects())
+            .Select(GetSubjectDTO.ConvertServiceDTO);
         return Ok(subjects);
     }
 
     [HttpGet("{code}")]
-    public async Task<IActionResult> GetSubject([FromRoute] string code)
+    public async Task<IActionResult> GetOne([FromRoute] string code)
     {
-        var subject = await subjectRepository.GetSubject(code);
-        return Ok(subject);
+        try
+        {
+            var subject = await subjectRepository.GetSubject(code);
+            return Ok(GetSubjectDTO.ConvertServiceDTO(subject));
+        }
+        catch (IdentifierDidntMatchAnyEntriesException e)
+        {
+            return NotFound();
+        }
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateSubject([FromBody] CreateSubjectDTO dto)
     {
-        await subjectRepository.CreateSubject(dto);
-        return Ok();
+        var subject = dto.ConvertToServiceDTO();
+        var createdSubject = await subjectRepository.CreateSubject(subject);
+        var newSubject = GetSubjectDTO.ConvertServiceDTO(createdSubject)!;
+        return CreatedAtAction(nameof(GetOne), new { code = newSubject.Code }, newSubject);
     }
 }
