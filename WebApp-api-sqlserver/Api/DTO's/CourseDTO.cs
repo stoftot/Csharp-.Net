@@ -27,8 +27,8 @@ public class GetCourseDTO
 
 public class CreateCourseDTO
 {
-    public string Name { get; set; }
-    public int Capacity { get; set; }
+    public required string Name { get; set; }
+    public required int Capacity { get; set; }
 
     public global::Api.Service.DTO_s.CreateCourseDTO ConvertToServiceDTO()
     {

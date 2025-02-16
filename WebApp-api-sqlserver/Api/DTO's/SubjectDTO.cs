@@ -18,7 +18,7 @@ public class GetSubjectDTO
 
 public class CreateSubjectDTO
 {
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     public global::Api.Service.DTO_s.CreateSubjectDTO ConvertToServiceDTO()
     {
