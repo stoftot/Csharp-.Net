@@ -17,4 +17,10 @@ public class MultipleEntriesWhitSameIdentifierException : Exception
     {
         Identifier = identifier;
     }
+    
+    public MultipleEntriesWhitSameIdentifierException(string message, string identifier, Exception inner)
+        : this(message, inner)
+    {
+        Identifier = identifier;
+    }
 }
