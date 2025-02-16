@@ -8,7 +8,7 @@ public class GetTeacherDTO
     public IEnumerable<GetCourseDTO>? Courses { get; set; }
 }
 
-public class CreateTeacherDTO
+public class CreateTeacherDTO(string name)
 {
-    public required string Name { get; set; }
+    public string Name { get; } = name;
 }

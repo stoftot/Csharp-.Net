@@ -15,9 +15,9 @@ public class GetCourseDTO
 
 public class CreateCourseDTO(string name, int capacity)
 {
-    public string Code { get; set; } = GenerateCourseCode(name);
-    public string Name { get; set; } = name;
-    public int Capacity { get; set; } = capacity;
+    public string Code { get; } = GenerateCourseCode(name);
+    public string Name { get; } = name;
+    public int Capacity { get; } = capacity;
 
     private static string GenerateCourseCode(string name)
     {

@@ -6,8 +6,8 @@ public class GetClassRoomDTO
     public required int Capacity { get; set; }
 }
 
-public class CreateClassRoomDTO
+public class CreateClassRoomDTO(string code, int capacity)
 {
-    public required string Code { get; set; }
-    public required int Capacity { get; set; }
+    public string Code { get; } = code;
+    public int Capacity { get; } = capacity;
 }
