@@ -1,12 +1,12 @@
 ﻿namespace Web.Service.DTO_s;
 
-public class ViewClassRoomDto
+public class ViewClassroomDto
 {
     public required string Code { get; set; }
     public required int Capacity { get; set; }
 }
 
-public class CreateClassRoomDto
+public class CreateClassroomDto
 {
     public required string Code { get; set; }
     public required int Capacity { get; set; }

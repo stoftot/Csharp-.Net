@@ -7,15 +7,15 @@ namespace Web.Api.Controllers;
 
 [Route("api/[controller]s")]
 [ApiController]
-public class ClassRoomController
+public class ClassroomController
     (IClassRoomService classRoomService,
-        ILogger<ClassRoomController> logger) : ControllerBase
+        ILogger<ClassroomController> logger) : ControllerBase
 {
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var classRooms = (await classRoomService.GetAllClassRooms())
-            .Select(GetClassRoomDto.ConvertServiceDto);
+        var classRooms = (await classRoomService.GetAllClassrooms())
+            .Select(GetClassroomDto.ConvertServiceDto);
         return Ok(classRooms);
     }
 
@@ -24,8 +24,8 @@ public class ClassRoomController
     {
         try
         {
-            var classRoom = await classRoomService.GetClassRoom(code);
-            return Ok(GetClassRoomDto.ConvertServiceDto(classRoom));
+            var classRoom = await classRoomService.GetClassroom(code);
+            return Ok(GetClassroomDto.ConvertServiceDto(classRoom));
         }
         catch (IdentifierDidntMatchAnyEntriesException e)
         {
@@ -43,11 +43,11 @@ public class ClassRoomController
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateClassRoomDto dto)
+    public async Task<IActionResult> Create([FromBody] CreateClassroomDto dto)
     {
         var classRoom = dto.ConvertToServiceDto();
-        var createdClassRoom = await classRoomService.CreateClassRoom(classRoom);
-        var newClassRoom = GetClassRoomDto.ConvertServiceDto(createdClassRoom)!;
+        var createdClassRoom = await classRoomService.CreateClassroom(classRoom);
+        var newClassRoom = GetClassroomDto.ConvertServiceDto(createdClassRoom)!;
         return CreatedAtAction(nameof(GetOne),new{code = newClassRoom.Code}, newClassRoom);
     }
 }

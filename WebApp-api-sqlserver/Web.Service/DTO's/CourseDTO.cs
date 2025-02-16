@@ -8,7 +8,7 @@ public class ViewCourseDto
 
     public ViewTeacherDto? CourseAdministrator { get; set; }
     public ViewTeacherDto? Teacher { get; set; }
-    public ViewClassRoomDto? ClassRoom { get; set; }
+    public ViewClassroomDto? ClassRoom { get; set; }
 }
 
 public class CreateCourseDto

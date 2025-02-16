@@ -15,7 +15,7 @@ public class Course
     public Teacher? Teacher { get; set; }
     
     public string? ClassRoomCode { get; set; }
-    public ClassRoom? ClassRoom { get; set; }
+    public Classroom? ClassRoom { get; set; }
     
     public static string NormalizeCode(string code) => code.ToUpper();
 }

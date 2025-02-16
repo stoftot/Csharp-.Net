@@ -10,7 +10,7 @@ public class GetCourseDto
 
     public GetTeacherDto? CourseAdministrator { get; set; }
     public GetTeacherDto? Teacher { get; set; }
-    public GetClassRoomDto? ClassRoom { get; set; }
+    public GetClassroomDto? ClassRoom { get; set; }
 }
 
 public class CreateCourseDto(string name, int capacity)

@@ -1,6 +1,6 @@
 ﻿namespace Web.DataAccess.Models;
 
-public class ClassRoom
+public class Classroom
 {
     public string Code { get; set; }
     public int Capacity { get; set; }

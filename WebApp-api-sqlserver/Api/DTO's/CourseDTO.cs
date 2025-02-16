@@ -8,7 +8,7 @@ public class GetCourseDto
 
     public GetTeacherDto? CourseAdministrator { get; set; }
     public GetTeacherDto? Teacher { get; set; }
-    public GetClassRoomDto? ClassRoom { get; set; }
+    public GetClassroomDto? ClassRoom { get; set; }
 
     public static GetCourseDto? ConvertServiceDto(global::Api.Service.DTO_s.GetCourseDto? dto)
     {
@@ -20,7 +20,7 @@ public class GetCourseDto
             Capacity = dto.Capacity,
             CourseAdministrator = GetTeacherDto.ConvertServiceDto(dto.CourseAdministrator),
             Teacher = GetTeacherDto.ConvertServiceDto(dto.Teacher),
-            ClassRoom = GetClassRoomDto.ConvertServiceDto(dto.ClassRoom)
+            ClassRoom = GetClassroomDto.ConvertServiceDto(dto.ClassRoom)
         };
     }
 }

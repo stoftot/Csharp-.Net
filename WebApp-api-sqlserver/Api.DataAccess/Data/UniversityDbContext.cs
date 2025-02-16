@@ -7,7 +7,7 @@ public class UniversityDbContext(DbContextOptions dbContextOptions) : DbContext(
 {
     public DbSet<Teacher> Teachers { get; set; }
     public DbSet<Subject> Subjects { get; set; }
-    public DbSet<ClassRoom> ClassRooms { get; set; }
+    public DbSet<Classroom> Classrooms { get; set; }
     public DbSet<Course> Courses { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,7 +35,7 @@ public class UniversityDbContext(DbContextOptions dbContextOptions) : DbContext(
                 .IsRequired();
         });
         
-        modelBuilder.Entity<ClassRoom>(entity =>
+        modelBuilder.Entity<Classroom>(entity =>
         {
             entity.HasKey(c => c.Code);
 

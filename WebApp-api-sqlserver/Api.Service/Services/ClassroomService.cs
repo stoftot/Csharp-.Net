@@ -6,23 +6,23 @@ namespace Api.Service.Services;
 
 public interface IClassRoomService
 {
-    public Task<IEnumerable<GetClassRoomDto>> GetAllClassRooms();
-    public Task<GetClassRoomDto> GetClassRoom(string code);
-    public Task<GetClassRoomDto> CreateClassRoom(CreateClassRoomDto dto);
+    public Task<IEnumerable<GetClassroomDto>> GetAllClassrooms();
+    public Task<GetClassroomDto> GetClassroom(string code);
+    public Task<GetClassroomDto> CreateClassroom(CreateClassroomDto dto);
 }
 
-public class ClassRoomService(IClassRoomRepository classRoomRepository) : IClassRoomService
+public class ClassroomService(IClassroomRepository classroomRepository) : IClassRoomService
 {
-    public Task<IEnumerable<GetClassRoomDto>> GetAllClassRooms()
+    public Task<IEnumerable<GetClassroomDto>> GetAllClassrooms()
     {
-        return classRoomRepository.GetAllClassRooms();
+        return classroomRepository.GetAllClassrooms();
     }
 
-    public async Task<GetClassRoomDto> GetClassRoom(string code)
+    public async Task<GetClassroomDto> GetClassroom(string code)
     {
         try
         {
-            var classRoom = await classRoomRepository.GetClassRoom(code);
+            var classRoom = await classroomRepository.GetClassroom(code);
             if (classRoom == null)
                 throw new IdentifierDidntMatchAnyEntriesException
                     ($"There is no class room whit the following code: {code}", code);
@@ -35,8 +35,8 @@ public class ClassRoomService(IClassRoomRepository classRoomRepository) : IClass
         }
     }
 
-    public Task<GetClassRoomDto> CreateClassRoom(CreateClassRoomDto dto)
+    public Task<GetClassroomDto> CreateClassroom(CreateClassroomDto dto)
     {
-        return classRoomRepository.CreateClassRoom(dto);
+        return classroomRepository.CreateClassroom(dto);
     }
 }
