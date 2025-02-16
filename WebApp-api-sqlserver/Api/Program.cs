@@ -31,7 +31,10 @@ builder.Services.AddScoped<ITeacherService, TeacherService>();
 // Configure Serilog
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()  // Log to console
-    .WriteTo.File("logs/api_log-.txt", rollingInterval: RollingInterval.Day)  // Log to a file
+    //log everything to a file
+    .WriteTo.File("logs/general/api_log-.txt", rollingInterval: RollingInterval.Day)
+    //log errors to a separate file as well
+    .WriteTo.File("logs/errors/api_log-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Error)  
     .CreateLogger();
 
 // Add Serilog to .NET logging system
