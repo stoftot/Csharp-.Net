@@ -16,7 +16,12 @@ public class GetSubjectDTO
     }
 }
 
-public class CreateSubjectDTO(string name)
+public class CreateSubjectDTO
 {
-    public required string Name { get; init; } = name;
+    public string Name { get; set; }
+
+    public global::Api.Service.DTO_s.CreateSubjectDTO ConvertToServiceDTO()
+    {
+        return new global::Api.Service.DTO_s.CreateSubjectDTO(Name);
+    }
 }

@@ -18,6 +18,11 @@ public class GetClassRoomDTO
 
 public class CreateClassRoomDTO
 {
-    public required string Code { get; set; }
-    public required int Capacity { get; set; }
+    public string Code { get; set; }
+    public int Capacity { get; set; }
+
+    public global::Api.Service.DTO_s.CreateClassRoomDTO ConvertToServiceDTO()
+    {
+        return new global::Api.Service.DTO_s.CreateClassRoomDTO(Code, Capacity);
+    }
 }

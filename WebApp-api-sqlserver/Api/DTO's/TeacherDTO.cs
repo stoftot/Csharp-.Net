@@ -34,4 +34,9 @@ public class GetTeacherDTO
 public class CreateTeacherDTO
 {
     public required string Name { get; set; }
+
+    public global::Api.Service.DTO_s.CreateTeacherDTO ConvetToServiceDTO()
+    {
+        return new global::Api.Service.DTO_s.CreateTeacherDTO(Name);
+    }
 }

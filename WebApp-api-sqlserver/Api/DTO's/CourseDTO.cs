@@ -25,8 +25,13 @@ public class GetCourseDTO
     }
 }
 
-public class CreateCourseDTO(string name, int capacity)
+public class CreateCourseDTO
 {
-    public required string Name { get; set; } = name;
-    public required int Capacity { get; set; } = capacity;
+    public string Name { get; set; }
+    public int Capacity { get; set; }
+
+    public global::Api.Service.DTO_s.CreateCourseDTO ConvertToServiceDTO()
+    {
+        return new global::Api.Service.DTO_s.CreateCourseDTO(Name, Capacity);
+    }
 }
