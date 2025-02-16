@@ -18,11 +18,11 @@ public class TeacherService(ITeacherRepository teacherRepository) : ITeacherServ
         return teacherRepository.GetAllTeachers();
     }
 
-    public Task<GetTeacherDTO> GetTeacher(int id)
+    public async Task<GetTeacherDTO> GetTeacher(int id)
     {
         try
         {
-            var teacher = teacherRepository.GetTeacher(id);
+            var teacher = await teacherRepository.GetTeacher(id);
             if (teacher == null)
                 throw new IdentifierDidntMatchAnyEntriesException
                     ($"There is no teacher whit the following id: {id}", $"{id}");

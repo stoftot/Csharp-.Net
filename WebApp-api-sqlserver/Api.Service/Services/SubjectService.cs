@@ -18,11 +18,11 @@ public class SubjectService(ISubjectRepository subjectRepository) : ISubjectServ
         return subjectRepository.GetAllSubjects();
     }
 
-    public Task<GetSubjectDTO> GetSubject(string code)
+    public async Task<GetSubjectDTO> GetSubject(string code)
     {
         try
         {
-            var subject = subjectRepository.GetSubject(code);
+            var subject = await subjectRepository.GetSubject(code);
             if (subject == null)
                 throw new IdentifierDidntMatchAnyEntriesException
                     ($"There is no subject whit the following code: {code}", code);

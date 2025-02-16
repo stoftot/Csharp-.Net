@@ -18,11 +18,11 @@ public class ClassRoomService(IClassRoomRepository classRoomRepository) : IClass
         return classRoomRepository.GetAllClassRooms();
     }
 
-    public Task<GetClassRoomDTO> GetClassRoom(string code)
+    public async Task<GetClassRoomDTO> GetClassRoom(string code)
     {
         try
         {
-            var classRoom = classRoomRepository.GetClassRoom(code);
+            var classRoom = await classRoomRepository.GetClassRoom(code);
             if (classRoom == null)
                 throw new IdentifierDidntMatchAnyEntriesException
                     ($"There is no class room whit the following code: {code}", code);

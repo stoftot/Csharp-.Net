@@ -18,11 +18,11 @@ public class CourseService(ICourseRepository courseRepository) : ICourseService
         return courseRepository.GetAllCourses();
     }
 
-    public Task<GetCourseDTO> GetCourse(string code)
+    public async Task<GetCourseDTO> GetCourse(string code)
     {
         try
         {
-            var course = courseRepository.GetCourse(code);
+            var course = await courseRepository.GetCourse(code);
             if (course == null)
                 throw new IdentifierDidntMatchAnyEntriesException
                     ($"There is no course whit the following code: {code}", code);
