@@ -6,5 +6,5 @@ public interface ITeacherRepository
 {
     public Task<IEnumerable<GetTeacherDTO>> GetAllTeachers();
     public Task<GetTeacherDTO> GetTeacher(int id);
-    public Task CreateTeacher(CreateTeacherDTO dto);
+    public Task<GetTeacherDTO> CreateTeacher(CreateTeacherDTO dto);
 }

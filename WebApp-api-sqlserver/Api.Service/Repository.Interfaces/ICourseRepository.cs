@@ -6,5 +6,5 @@ public interface ICourseRepository
 {
     public Task<IEnumerable<GetCourseDTO>> GetAllCourses();
     public Task<GetCourseDTO> GetCourse(string code);
-    public Task CreateCourse(CreateCourseDTO dto);
+    public Task<GetCourseDTO> CreateCourse(CreateCourseDTO dto);
 }

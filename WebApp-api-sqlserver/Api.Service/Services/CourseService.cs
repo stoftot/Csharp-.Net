@@ -7,7 +7,7 @@ public interface ICourseService
 {
     public Task<IEnumerable<GetCourseDTO>> GetAllCourses();
     public Task<GetCourseDTO> GetCourse(string code);
-    public Task CreateCourse(CreateCourseDTO dto);
+    public Task<GetCourseDTO> CreateCourse(CreateCourseDTO dto);
 }
 
 public class CourseService(ICourseRepository courseRepository) : ICourseService
@@ -22,7 +22,7 @@ public class CourseService(ICourseRepository courseRepository) : ICourseService
         return courseRepository.GetCourse(code);
     }
 
-    public Task CreateCourse(CreateCourseDTO dto)
+    public Task<GetCourseDTO> CreateCourse(CreateCourseDTO dto)
     {
         return courseRepository.CreateCourse(dto);
     }

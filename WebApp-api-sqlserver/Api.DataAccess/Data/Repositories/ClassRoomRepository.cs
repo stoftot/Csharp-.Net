@@ -26,7 +26,7 @@ public class ClassRoomRepository(UniversityDbContext context) : IClassRoomReposi
             })
             .FirstAsync();
 
-    public async Task CreateClassRoom(CreateClassRoomDTO classRoomDto)
+    public async Task<GetClassRoomDTO> CreateClassRoom(CreateClassRoomDTO classRoomDto)
     {
         var classRoom = new ClassRoom
         {
@@ -34,7 +34,13 @@ public class ClassRoomRepository(UniversityDbContext context) : IClassRoomReposi
             Capacity = classRoomDto.Capacity
         };
 
-        await context.ClassRooms.AddAsync(classRoom);
+        var newClassRoom = await context.ClassRooms.AddAsync(classRoom);
         await context.SaveChangesAsync();
+
+        return new GetClassRoomDTO
+        {
+            Code = newClassRoom.Entity.Code,
+            Capacity = newClassRoom.Entity.Capacity
+        };
     }
 }

@@ -28,7 +28,7 @@ public class CourseRepository(UniversityDbContext context) : ICourseRepository
             })
             .FirstAsync();
 
-    public async Task CreateCourse(CreateCourseDTO courseDto)
+    public async Task<GetCourseDTO> CreateCourse(CreateCourseDTO courseDto)
     {
         var course = new Course
         {
@@ -37,7 +37,14 @@ public class CourseRepository(UniversityDbContext context) : ICourseRepository
             Capacity = courseDto.Capacity
         };
 
-        await context.AddAsync(course);
+        var newCourse = await context.AddAsync(course);
         await context.SaveChangesAsync();
+
+        return new GetCourseDTO
+        {
+            Code = newCourse.Entity.Code,
+            Name = newCourse.Entity.Name,
+            Capacity = newCourse.Entity.Capacity
+        };
     }
 }

@@ -6,7 +6,7 @@ public interface ITeacherService
 {
     public Task<IEnumerable<GetTeacherDTO>> GetAllTeachers();
     public Task<GetTeacherDTO> GetTeacher(int id);
-    public Task CreateTeacher(CreateTeacherDTO dto);
+    public Task<GetTeacherDTO> CreateTeacher(CreateTeacherDTO dto);
 }
 
 public class TeacherService(ITeacherService teacherService) : ITeacherService
@@ -21,7 +21,7 @@ public class TeacherService(ITeacherService teacherService) : ITeacherService
         return teacherService.GetTeacher(id);
     }
 
-    public Task CreateTeacher(CreateTeacherDTO dto)
+    public Task<GetTeacherDTO> CreateTeacher(CreateTeacherDTO dto)
     {
         return teacherService.CreateTeacher(dto);
     }

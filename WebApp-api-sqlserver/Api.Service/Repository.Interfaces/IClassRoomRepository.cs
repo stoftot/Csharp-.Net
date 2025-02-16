@@ -6,5 +6,5 @@ public interface IClassRoomRepository
 {
     public Task<IEnumerable<GetClassRoomDTO>> GetAllClassRooms();
     public Task<GetClassRoomDTO> GetClassRoom(string code);
-    public Task CreateClassRoom(CreateClassRoomDTO dto);
+    public Task<GetClassRoomDTO> CreateClassRoom(CreateClassRoomDTO dto);
 }

@@ -18,7 +18,7 @@ public class SubjectRepository(UniversityDbContext context) : ISubjectRepository
             .Select(s => new GetSubjectDTO { Code = s.Code, Name = s.Name })
             .FirstAsync();
 
-    public async Task CreateSubject(CreateSubjectDTO dto)
+    public async Task<GetSubjectDTO> CreateSubject(CreateSubjectDTO dto)
     {
         var subject = new Subject
         {
@@ -26,7 +26,13 @@ public class SubjectRepository(UniversityDbContext context) : ISubjectRepository
             Name = dto.Name
         };
 
-        await context.Subjects.AddAsync(subject);
+        var newSubject = await context.Subjects.AddAsync(subject);
         await context.SaveChangesAsync();
+
+        return new GetSubjectDTO
+        {
+            Code = newSubject.Entity.Code,
+            Name = newSubject.Entity.Name
+        };
     }
 }

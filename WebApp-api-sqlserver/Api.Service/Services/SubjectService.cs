@@ -7,7 +7,7 @@ public interface ISubjectService
 {
     public Task<IEnumerable<GetSubjectDTO>> GetAllSubjects();
     public Task<GetSubjectDTO> GetSubject(string code);
-    public Task CreateSubject(CreateSubjectDTO dto);
+    public Task<GetSubjectDTO> CreateSubject(CreateSubjectDTO dto);
 }
 
 public class SubjectService(ISubjectRepository subjectRepository) : ISubjectService
@@ -22,7 +22,7 @@ public class SubjectService(ISubjectRepository subjectRepository) : ISubjectServ
         return subjectRepository.GetSubject(code);
     }
 
-    public Task CreateSubject(CreateSubjectDTO dto)
+    public Task<GetSubjectDTO> CreateSubject(CreateSubjectDTO dto)
     {
         return subjectRepository.CreateSubject(dto);
     }

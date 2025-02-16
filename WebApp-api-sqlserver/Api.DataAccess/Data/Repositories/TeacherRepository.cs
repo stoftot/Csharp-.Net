@@ -18,14 +18,20 @@ public class TeacherRepository(UniversityDbContext context) : ITeacherRepository
             .Select(t => new GetTeacherDTO { Id = t.Id, Name = t.Name })
             .FirstAsync();
 
-    public async Task CreateTeacher(CreateTeacherDTO dto)
+    public async Task<GetTeacherDTO>CreateTeacher(CreateTeacherDTO dto)
     {
         var teacher = new Teacher
         {
             Name = dto.Name
         };
 
-        await context.AddAsync(teacher);
+        var newTeacher = await context.AddAsync(teacher);
         await context.SaveChangesAsync();
+        
+        return new GetTeacherDTO
+        {
+            Id = newTeacher.Entity.Id,
+            Name = newTeacher.Entity.Name
+        };
     }
 }

@@ -7,7 +7,7 @@ public interface IClassRoomService
 {
     public Task<IEnumerable<GetClassRoomDTO>> GetAllClassRooms();
     public Task<GetClassRoomDTO> GetClassRoom(string code);
-    public Task CreateClassRoom(CreateClassRoomDTO dto);
+    public Task<GetClassRoomDTO> CreateClassRoom(CreateClassRoomDTO dto);
 }
 
 public class ClassRoomService(IClassRoomRepository classRoomRepository) : IClassRoomService
@@ -22,7 +22,7 @@ public class ClassRoomService(IClassRoomRepository classRoomRepository) : IClass
         return classRoomRepository.GetClassRoom(code);
     }
 
-    public Task CreateClassRoom(CreateClassRoomDTO dto)
+    public Task<GetClassRoomDTO> CreateClassRoom(CreateClassRoomDTO dto)
     {
         return classRoomRepository.CreateClassRoom(dto);
     }

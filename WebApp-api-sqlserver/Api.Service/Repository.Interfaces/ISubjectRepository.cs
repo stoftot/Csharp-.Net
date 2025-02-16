@@ -6,5 +6,5 @@ public interface ISubjectRepository
 {
     public Task<IEnumerable<GetSubjectDTO>> GetAllSubjects();
     public Task<GetSubjectDTO> GetSubject(string code);
-    public Task CreateSubject(CreateSubjectDTO dto);
+    public Task<GetSubjectDTO> CreateSubject(CreateSubjectDTO dto);
 }
