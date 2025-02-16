@@ -6,7 +6,9 @@ using Web.Api.DTO_s;
 namespace Web.Api.Controllers;
 [Route("api/[controller]s")]
 [ApiController]
-public class TeacherController(ITeacherService teacherService) : ControllerBase
+public class TeacherController
+    (ITeacherService teacherService,
+        ILogger<TeacherController> logger) : ControllerBase
 {
     [HttpGet]
     public async Task<IActionResult> GetAll()
@@ -27,6 +29,15 @@ public class TeacherController(ITeacherService teacherService) : ControllerBase
         catch (IdentifierDidntMatchAnyEntriesException e)
         {
             return NotFound();
+        }
+        catch (MultipleEntriesWhitSameIdentifierException e)
+        {
+            logger.LogError(e, "An error occured while processing GetOne");
+            return Problem(
+                detail: "The service is temporarily unavailable. Please try again later.",
+                statusCode: 503,
+                title: "Service Unavailable"
+            );
         }
     }
 
