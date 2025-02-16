@@ -1,3 +1,5 @@
+using Api.Service.Repository.Interfaces;
+using Api.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using Web.DataAccess.Data;
 using Web.DataAccess.Data.Repositories;
@@ -13,10 +15,17 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<UniversityDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<SubjectRepository>();
-builder.Services.AddScoped<ClassRoomRepository>();
-builder.Services.AddScoped<TeacherRepository>();
-builder.Services.AddScoped<CourseRepository>();
+//repos
+builder.Services.AddScoped<IClassRoomRepository, ClassRoomRepository>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+
+//services
+builder.Services.AddScoped<IClassRoomService, ClassRoomService>();
+builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<ISubjectService, SubjectService>();
+builder.Services.AddScoped<ITeacherService, TeacherService>();
 
 var app = builder.Build();
 
