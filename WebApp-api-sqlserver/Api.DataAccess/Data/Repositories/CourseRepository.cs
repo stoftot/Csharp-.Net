@@ -17,7 +17,7 @@ public class CourseRepository(UniversityDbContext context) : ICourseRepository
             })
             .ToListAsync();
     
-    public async Task<GetCourseDTO> GetCourse(string code) =>
+    public async Task<GetCourseDTO?> GetCourse(string code) =>
         await context.Courses
             .Where(c => c.Code == Course.NormalizeCode(code))
             .Select(c => new GetCourseDTO
@@ -26,7 +26,7 @@ public class CourseRepository(UniversityDbContext context) : ICourseRepository
                 Name = c.Name,
                 Capacity = c.Capacity
             })
-            .FirstAsync();
+            .SingleOrDefaultAsync();
 
     public async Task<GetCourseDTO> CreateCourse(CreateCourseDTO courseDto)
     {

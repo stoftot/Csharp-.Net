@@ -12,11 +12,11 @@ public class TeacherRepository(UniversityDbContext context) : ITeacherRepository
             .Select(t => new GetTeacherDTO { Id = t.Id, Name = t.Name })
             .ToListAsync();
 
-    public async Task<GetTeacherDTO> GetTeacher(int id) =>
+    public async Task<GetTeacherDTO?> GetTeacher(int id) =>
         await context.Teachers
             .Where(t => t.Id == id)
             .Select(t => new GetTeacherDTO { Id = t.Id, Name = t.Name })
-            .FirstAsync();
+            .SingleOrDefaultAsync();
 
     public async Task<GetTeacherDTO>CreateTeacher(CreateTeacherDTO dto)
     {
