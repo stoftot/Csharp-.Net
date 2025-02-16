@@ -1,6 +1,7 @@
 using Api.Service.Repository.Interfaces;
 using Api.Service.Services;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using Web.DataAccess.Data;
 using Web.DataAccess.Data.Repositories;
 
@@ -26,6 +27,17 @@ builder.Services.AddScoped<IClassRoomService, ClassRoomService>();
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ISubjectService, SubjectService>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
+
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()  // Log to console
+    .WriteTo.File("logs/api_log-.txt", rollingInterval: RollingInterval.Day)  // Log to a file
+    .CreateLogger();
+
+// Add Serilog to .NET logging system
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog();
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 
