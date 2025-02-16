@@ -16,11 +16,9 @@ public class TeacherApiRepository(HttpClient httpClient, IConfiguration configur
         return GetAllAsync<ViewTeacherDto>(Endpoint);
     }
 
-    public async Task<ViewTeacherDto?> GetTeacher(int id)
+    public Task<ViewTeacherDto?> GetTeacher(int id)
     {
-        var response = await HttpClient.GetAsync($"{ApiBaseUrl}/{Endpoint}/{id}");
-        response.EnsureSuccessStatusCode();
-        return await response.Content.ReadFromJsonAsync<ViewTeacherDto>();
+        return GetOneAsync<ViewTeacherDto, int>(Endpoint, id);
     }
 
     public Task<ViewTeacherDto> CreateTeacher(CreateTeacherDto dto)
