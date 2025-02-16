@@ -9,20 +9,20 @@ public interface ITeacherService
     public Task CreateTeacher(CreateTeacherDTO dto);
 }
 
-public class TeacherService : ITeacherService
+public class TeacherService(ITeacherService teacherService) : ITeacherService
 {
     public Task<IEnumerable<GetTeacherDTO>> GetAllTeachers()
     {
-        throw new NotImplementedException();
+        return teacherService.GetAllTeachers();
     }
 
     public Task<GetTeacherDTO> GetTeacher(int id)
     {
-        throw new NotImplementedException();
+        return teacherService.GetTeacher(id);
     }
 
     public Task CreateTeacher(CreateTeacherDTO dto)
     {
-        throw new NotImplementedException();
+        return teacherService.CreateTeacher(dto);
     }
 }

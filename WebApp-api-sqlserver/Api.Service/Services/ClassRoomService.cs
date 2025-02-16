@@ -1,4 +1,5 @@
 ﻿using Api.Service.DTO_s;
+using Api.Service.Repository.Interfaces;
 
 namespace Api.Service.Services;
 
@@ -9,20 +10,20 @@ public interface IClassRoomService
     public Task CreateClassRoom(CreateClassRoomDTO dto);
 }
 
-public class ClassRoomService : IClassRoomService
+public class ClassRoomService(IClassRoomRepository classRoomRepository) : IClassRoomService
 {
-    public async Task<IEnumerable<GetClassRoomDTO>> GetAllClassRooms()
+    public Task<IEnumerable<GetClassRoomDTO>> GetAllClassRooms()
     {
-        throw new NotImplementedException();
+        return classRoomRepository.GetAllClassRooms();
     }
 
-    public async Task<GetClassRoomDTO> GetClassRoom(string code)
+    public Task<GetClassRoomDTO> GetClassRoom(string code)
     {
-        throw new NotImplementedException();
+        return classRoomRepository.GetClassRoom(code);
     }
 
-    public async Task CreateClassRoom(CreateClassRoomDTO dto)
+    public Task CreateClassRoom(CreateClassRoomDTO dto)
     {
-        throw new NotImplementedException();
+        return classRoomRepository.CreateClassRoom(dto);
     }
 }

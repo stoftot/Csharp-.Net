@@ -1,4 +1,5 @@
 ﻿using Api.Service.DTO_s;
+using Api.Service.Repository.Interfaces;
 
 namespace Api.Service.Services;
 
@@ -9,20 +10,20 @@ public interface ICourseService
     public Task CreateCourse(CreateCourseDTO dto);
 }
 
-public class CourseService : ICourseService
+public class CourseService(ICourseRepository courseRepository) : ICourseService
 {
     public Task<IEnumerable<GetCourseDTO>> GetAllCourses()
     {
-        throw new NotImplementedException();
+        return courseRepository.GetAllCourses();
     }
 
     public Task<GetCourseDTO> GetCourse(string code)
     {
-        throw new NotImplementedException();
+        return courseRepository.GetCourse(code);
     }
 
     public Task CreateCourse(CreateCourseDTO dto)
     {
-        throw new NotImplementedException();
+        return courseRepository.CreateCourse(dto);
     }
 }

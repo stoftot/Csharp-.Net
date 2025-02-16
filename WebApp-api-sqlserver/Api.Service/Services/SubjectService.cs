@@ -1,4 +1,5 @@
 ﻿using Api.Service.DTO_s;
+using Api.Service.Repository.Interfaces;
 
 namespace Api.Service.Services;
 
@@ -9,20 +10,20 @@ public interface ISubjectService
     public Task CreateSubject(CreateSubjectDTO dto);
 }
 
-public class SubjectService : ISubjectService
+public class SubjectService(ISubjectRepository subjectRepository) : ISubjectService
 {
     public Task<IEnumerable<GetSubjectDTO>> GetAllSubjects()
     {
-        throw new NotImplementedException();
+        return subjectRepository.GetAllSubjects();
     }
 
     public Task<GetSubjectDTO> GetSubject(string code)
     {
-        throw new NotImplementedException();
+        return subjectRepository.GetSubject(code);
     }
 
     public Task CreateSubject(CreateSubjectDTO dto)
     {
-        throw new NotImplementedException();
+        return subjectRepository.CreateSubject(dto);
     }
 }
