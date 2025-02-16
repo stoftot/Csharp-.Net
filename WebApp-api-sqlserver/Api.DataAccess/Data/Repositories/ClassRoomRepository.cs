@@ -1,31 +1,32 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Web.DataAccess.DTO;
+﻿using Api.Service.DTO_s;
+using Api.Service.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Web.DataAccess.Models;
 
 namespace Web.DataAccess.Data.Repositories;
 
-public class ClassRoomRepository(UniversityDbContext context)
+public class ClassRoomRepository(UniversityDbContext context) : IClassRoomRepository
 {
-    public async Task<IEnumerable<ClassRoomDTO>> GetAllClassRooms() =>
+    public async Task<IEnumerable<GetClassRoomDTO>> GetAllClassRooms() =>
         await context.ClassRooms
-            .Select(c => new ClassRoomDTO()
+            .Select(c => new GetClassRoomDTO()
             {
                 Code = c.Code,
                 Capacity = c.Capacity
             })
             .ToListAsync();
     
-    public async Task<ClassRoomDTO> GetClassRoom(string code) =>
+    public async Task<GetClassRoomDTO> GetClassRoom(string code) =>
         await context.ClassRooms
             .Where(c => c.Code == ClassRoom.NormalizeCode(code))
-            .Select(c => new ClassRoomDTO()
+            .Select(c => new GetClassRoomDTO()
             {
                 Code = c.Code,
                 Capacity = c.Capacity
             })
             .FirstAsync();
 
-    public async Task CreateClassRoom(ClassRoomDTO classRoomDto)
+    public async Task CreateClassRoom(CreateClassRoomDTO classRoomDto)
     {
         var classRoom = new ClassRoom
         {

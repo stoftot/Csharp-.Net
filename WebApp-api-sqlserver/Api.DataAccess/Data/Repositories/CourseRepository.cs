@@ -1,14 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Web.DataAccess.DTO;
+﻿using Api.Service.DTO_s;
+using Api.Service.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Web.DataAccess.Models;
 
 namespace Web.DataAccess.Data.Repositories;
 
-public class CourseRepository(UniversityDbContext context)
+public class CourseRepository(UniversityDbContext context) : ICourseRepository
 {
-    public async Task<IEnumerable<CourseDTO>> GetAllCourses() =>
+    public async Task<IEnumerable<GetCourseDTO>> GetAllCourses() =>
         await context.Courses
-            .Select(c => new CourseDTO
+            .Select(c => new GetCourseDTO
             {
                 Code = c.Code,
                 Name = c.Name,
@@ -16,10 +17,10 @@ public class CourseRepository(UniversityDbContext context)
             })
             .ToListAsync();
     
-    public async Task<CourseDTO> GetCourse(string code) =>
+    public async Task<GetCourseDTO> GetCourse(string code) =>
         await context.Courses
             .Where(c => c.Code == Course.NormalizeCode(code))
-            .Select(c => new CourseDTO
+            .Select(c => new GetCourseDTO
             {
                 Code = c.Code,
                 Name = c.Name,
@@ -27,7 +28,7 @@ public class CourseRepository(UniversityDbContext context)
             })
             .FirstAsync();
 
-    public async Task CreateCourse(CourseDTO courseDto)
+    public async Task CreateCourse(CreateCourseDTO courseDto)
     {
         var course = new Course
         {
