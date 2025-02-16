@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="Reposetory.Interfaces\" />
-      <Folder Include="Services\" />
     </ItemGroup>
 
 </Project>
