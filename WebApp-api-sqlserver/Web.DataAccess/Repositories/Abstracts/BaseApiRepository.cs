@@ -17,11 +17,11 @@ public abstract class BaseApiRepository(HttpClient httpClient, IConfiguration co
         return list ?? [];
     }
     
-    public async Task<T?> GetOneAsync<T, TId>(string endpoint, TId id)
+    public async Task<T> GetOneAsync<T, TId>(string endpoint, TId id)
     {
         var response = await HttpClient.GetAsync($"{ApiBaseUrl}/{endpoint}/{id}");
         response.EnsureSuccessStatusCode();
-        return await response.Content.ReadFromJsonAsync<T>();
+        return await response.Content.ReadFromJsonAsync<T>()!;
     }
     
     public async Task<T> CreateAsync<T,TD>(string endpoint, TD data)

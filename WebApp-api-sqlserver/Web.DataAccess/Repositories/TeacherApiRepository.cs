@@ -16,7 +16,7 @@ public class TeacherApiRepository(HttpClient httpClient, IConfiguration configur
         return GetAllAsync<ViewTeacherDto>(Endpoint);
     }
 
-    public Task<ViewTeacherDto?> GetTeacher(int id)
+    public Task<ViewTeacherDto> GetTeacher(int id)
     {
         return GetOneAsync<ViewTeacherDto, int>(Endpoint, id);
     }

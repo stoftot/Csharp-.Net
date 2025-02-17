@@ -16,7 +16,7 @@ public class SubjectRepository(HttpClient httpClient, IConfiguration configurati
         return GetAllAsync<ViewSubjectDto>(Endpoint);
     }
 
-    public Task<ViewSubjectDto?> GetSubject(string code)
+    public Task<ViewSubjectDto> GetSubject(string code)
     {
         return GetOneAsync<ViewSubjectDto, string>(Endpoint, code);
     }

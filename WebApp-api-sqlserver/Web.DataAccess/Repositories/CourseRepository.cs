@@ -15,7 +15,7 @@ public class CourseRepository(HttpClient httpClient, IConfiguration configuratio
         return GetAllAsync<ViewCourseDto>(Endpoint);
     }
 
-    public Task<ViewCourseDto?> GetCourse(string code)
+    public Task<ViewCourseDto> GetCourse(string code)
     {
         return GetOneAsync<ViewCourseDto, string>(Endpoint, code);
     }

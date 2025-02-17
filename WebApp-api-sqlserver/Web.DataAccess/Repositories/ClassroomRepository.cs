@@ -15,7 +15,7 @@ public class ClassroomRepository(HttpClient httpClient, IConfiguration configura
         return GetAllAsync<ViewClassroomDto>(Endpoint);
     }
 
-    public Task<ViewClassroomDto?> GetClassroom(string code)
+    public Task<ViewClassroomDto> GetClassroom(string code)
     {
         return GetOneAsync<ViewClassroomDto, string>(Endpoint, code);
     }
