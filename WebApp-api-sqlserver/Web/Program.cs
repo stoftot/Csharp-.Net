@@ -5,15 +5,22 @@ using Web.Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Load environment-specific appsettings.json, into the program configuration
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 //repository's
-builder.Services.AddScoped<IClassroomRepository, ClassroomRepository>();
-builder.Services.AddScoped<ICourseRepository, CourseRepository>();
-builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
-builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+builder.Services.AddHttpClient<IClassroomRepository, ClassroomRepository>();
+builder.Services.AddHttpClient<ICourseRepository, CourseRepository>();
+builder.Services.AddHttpClient<ISubjectRepository, SubjectRepository>();
+builder.Services.AddHttpClient<ITeacherRepository, TeacherRepository>();
 
 //services
 builder.Services.AddScoped<IClassRoomService, ClassroomService>();
