@@ -2,7 +2,7 @@
 
 namespace Web.Service.Repository.Interfaces;
 
-public interface IClassRoomRepository
+public interface IClassroomRepository
 {
     public Task<IEnumerable<ViewClassroomDto>> GetAllClassrooms();
     public Task<ViewClassroomDto?> GetClassroom(string code);

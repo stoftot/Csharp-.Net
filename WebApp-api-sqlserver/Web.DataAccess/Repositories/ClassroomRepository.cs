@@ -6,7 +6,7 @@ using Web.Service.Repository.Interfaces;
 namespace Web.DataAccess.Repositories;
 
 public class ClassroomRepository(HttpClient httpClient, IConfiguration configuration) 
-    : BaseApiRepository(httpClient, configuration), IClassRoomRepository
+    : BaseApiRepository(httpClient, configuration), IClassroomRepository
 {
     private string Endpoint { get; } = "ClassRooms";
 
