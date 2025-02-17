@@ -6,4 +6,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Web.DataAccess\Web.DataAccess.csproj" />
+      <ProjectReference Include="..\Web.Service\Web.Service.csproj" />
+    </ItemGroup>
+
 </Project>
