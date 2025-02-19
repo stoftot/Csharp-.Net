@@ -2,16 +2,16 @@
 
 #nullable disable
 
-namespace Web.Api.Migrations
+namespace Web.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigration : Migration
+    public partial class Initial_Migration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ClassRooms",
+                name: "Classrooms",
                 columns: table => new
                 {
                     Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -19,7 +19,7 @@ namespace Web.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClassRooms", x => x.Code);
+                    table.PrimaryKey("PK_Classrooms", x => x.Code);
                 });
 
             migrationBuilder.CreateTable(
@@ -54,7 +54,7 @@ namespace Web.Api.Migrations
                     Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
-                    CourseAdminestreId = table.Column<int>(type: "int", nullable: true),
+                    CourseAdministratorId = table.Column<int>(type: "int", nullable: true),
                     TeacherId = table.Column<int>(type: "int", nullable: true),
                     ClassRoomCode = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -62,13 +62,13 @@ namespace Web.Api.Migrations
                 {
                     table.PrimaryKey("PK_Courses", x => x.Code);
                     table.ForeignKey(
-                        name: "FK_Courses_ClassRooms_ClassRoomCode",
+                        name: "FK_Courses_Classrooms_ClassRoomCode",
                         column: x => x.ClassRoomCode,
-                        principalTable: "ClassRooms",
+                        principalTable: "Classrooms",
                         principalColumn: "Code");
                     table.ForeignKey(
-                        name: "FK_Courses_Teachers_CourseAdminestreId",
-                        column: x => x.CourseAdminestreId,
+                        name: "FK_Courses_Teachers_CourseAdministratorId",
+                        column: x => x.CourseAdministratorId,
                         principalTable: "Teachers",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -108,9 +108,9 @@ namespace Web.Api.Migrations
                 column: "ClassRoomCode");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_CourseAdminestreId",
+                name: "IX_Courses_CourseAdministratorId",
                 table: "Courses",
-                column: "CourseAdminestreId");
+                column: "CourseAdministratorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Courses_TeacherId",
@@ -133,7 +133,7 @@ namespace Web.Api.Migrations
                 name: "SubjectTeacher");
 
             migrationBuilder.DropTable(
-                name: "ClassRooms");
+                name: "Classrooms");
 
             migrationBuilder.DropTable(
                 name: "Subjects");
