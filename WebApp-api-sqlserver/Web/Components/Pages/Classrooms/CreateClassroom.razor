@@ -1,0 +1,22 @@
+﻿@page "/Classrooms/Create"
+@inherits CreateClassroomBase
+
+<PageTitle>Create Classroom</PageTitle>
+
+<h1>Create Classroom</h1>
+<EditForm Model="@FormData" OnValidSubmit="@HandleSubmit" FormName="CreateClassroom">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="Code" class="form-label">Classroom Code</label>
+        <InputText id="Code" class="form-control" @bind-Value="FormData.Code" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Capacity" class="form-label">Classroom Capacity</label>
+        <InputNumber id="Capacity" class="form-control" @bind-Value="FormData.Capacity" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Create</button>
+</EditForm>
