@@ -1,0 +1,34 @@
+﻿@page "/Classrooms/View"
+@attribute [StreamRendering]
+@inherits ViewClassroomsBase
+
+<PageTitle>Classrooms</PageTitle>
+
+<h1>Classrooms</h1>
+
+@if (Classrooms == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Code</th>
+            <th>Capacity</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var c in Classrooms)
+        {
+            <tr>
+                <td>@c.Code</td>
+                <td>@c.Capacity</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
