@@ -1,0 +1,41 @@
+﻿@page "/Classroom/{ClassroomCode}"
+@inherits ViewSpeceficClassroomBase
+
+<PageTitle>Classroom: @ClassroomCode</PageTitle>
+
+<h1>Classroom: @ClassroomCode</h1>
+
+@if (Classroom == null)
+{
+    <p>Loading classroom...</p>
+}
+else
+{
+    <EditForm Model="@UpdateFormData" OnValidSubmit="@UpdateClassRoom" FormName="UpdateClassroom">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label for="Code" class="form-label">Classroom Code</label>
+            <div id="Code" class="form-control-plaintext">@UpdateFormData.Code</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="Capacity" class="form-label">Classroom Capacity</label>
+            <InputNumber id="Capacity" class="form-control" @bind-Value="UpdateFormData.Capacity" />
+        </div>
+
+        <div class="button-container">
+            <button class="btn btn-primary" type="submit">Update</button>
+            <button class="btn btn-danger" type="button" @onclick="DeleteClassRoom">Delete classroom</button>
+        </div>
+    </EditForm>
+
+    <style>
+        .button-container {
+            display: flex;
+            gap: 10px; 
+        }
+    </style>
+
+}
