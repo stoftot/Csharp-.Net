@@ -58,4 +58,11 @@ public class ClassroomController
         await classRoomService.UpdateClassroom(classroom);
         return NoContent();
     }
+
+    [HttpDelete("{code}")]
+    public async Task<IActionResult> Delete([FromRoute] string code)
+    {
+        await classRoomService.DeleteClassroom(code);
+        return NoContent();
+    }
 }

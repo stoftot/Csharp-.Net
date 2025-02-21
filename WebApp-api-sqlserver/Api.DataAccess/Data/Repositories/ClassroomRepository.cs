@@ -56,4 +56,15 @@ public class ClassroomRepository(UniversityDbContext context) : IClassroomReposi
         currentClassroom.Capacity = dto.Capacity;
         await context.SaveChangesAsync();
     }
+
+    public async Task DeleteClassroom(string code)
+    {
+        var classroom = await context.Classrooms
+                                   .Where(c => c.Code == Classroom.NormalizeCode(code))
+                                   .SingleOrDefaultAsync() 
+                               ?? throw new IdentifierDidntMatchAnyEntriesException
+                                   ($"There is no class room whit the following code: {code}", code);
+        context.Remove(classroom);
+        await context.SaveChangesAsync();
+    }
 }
