@@ -30,4 +30,10 @@ public abstract class BaseApiRepository(HttpClient httpClient, IConfiguration co
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<T>();
     }
+
+    public async Task UpdateAsync<TId, TD>(string endpoint, TId id, TD data)
+    {
+        var response = await HttpClient.PutAsJsonAsync($"{ApiBaseUrl}/{endpoint}/{id}", data);
+        response.EnsureSuccessStatusCode();
+    }
 }

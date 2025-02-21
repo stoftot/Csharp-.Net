@@ -8,6 +8,7 @@ public interface IClassRoomService
     public Task<IEnumerable<ViewClassroomDto>> GetAllClassrooms();
     public Task<ViewClassroomDto> GetClassroom(string code);
     public Task<ViewClassroomDto> CreateClassroom(CreateClassroomDto dto);
+    public Task UpdateClassroom(string code, UpdateClassroomDto dto);
 }
 
 public class ClassroomService(IClassroomRepository classroomRepository) : IClassRoomService
@@ -26,5 +27,10 @@ public class ClassroomService(IClassroomRepository classroomRepository) : IClass
     public Task<ViewClassroomDto> CreateClassroom(CreateClassroomDto dto)
     {
         return classroomRepository.CreateClassroom(dto);
+    }
+
+    public Task UpdateClassroom(string code, UpdateClassroomDto dto)
+    {
+        return classroomRepository.UpdateClassroom(code, dto);
     }
 }

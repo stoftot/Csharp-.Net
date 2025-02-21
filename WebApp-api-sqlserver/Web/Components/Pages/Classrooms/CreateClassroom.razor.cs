@@ -7,8 +7,8 @@ namespace Web.Components.Pages.Classrooms;
 
 public class CreateClassroomBase : ComponentBase
 {
-    [Inject] private NavigationManager Navigation { get; set; } = null!;
-    [Inject] private IClassRoomService ClassRoomService { get; set; } = null!;
+    [Inject] protected NavigationManager Navigation { get; set; } = null!;
+    [Inject] protected IClassRoomService ClassRoomService { get; set; } = null!;
 
     [SupplyParameterFromForm(FormName = "CreateClassroom")]
     protected CreatFormData FormData { get; set; } = new();
