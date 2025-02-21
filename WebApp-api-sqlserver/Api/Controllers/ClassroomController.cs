@@ -50,4 +50,12 @@ public class ClassroomController
         var newClassRoom = GetClassroomDto.ConvertServiceDto(createdClassRoom)!;
         return CreatedAtAction(nameof(GetOne),new{code = newClassRoom.Code}, newClassRoom);
     }
+
+    [HttpPut("{code}")]
+    public async Task<IActionResult> Update([FromRoute] string code, [FromBody] UpdateClassroomDto dto)
+    {
+        var classroom = dto.ConvertToServiceDto(code);
+        await classRoomService.UpdateClassroom(classroom);
+        return NoContent();
+    }
 }
