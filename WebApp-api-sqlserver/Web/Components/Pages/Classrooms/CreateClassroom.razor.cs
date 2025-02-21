@@ -13,7 +13,7 @@ public class CreateClassroomBase : ComponentBase
     [SupplyParameterFromForm(FormName = "CreateClassroom")]
     protected CreatFormData FormData { get; set; } = new();
     
-    protected async Task HandleSubmit()
+    protected async Task CreateClassRoom()
     {
         var newClassRoom = new CreateClassroomDto(FormData.Code, FormData.Capacity);
         await ClassRoomService.CreateClassroom(newClassRoom);
