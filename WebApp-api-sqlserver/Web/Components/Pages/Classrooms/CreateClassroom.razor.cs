@@ -16,8 +16,8 @@ public class CreateClassroomBase : ComponentBase
     protected async Task CreateClassRoom()
     {
         var newClassRoom = new CreateClassroomDto(FormData.Code, FormData.Capacity);
-        await ClassRoomService.CreateClassroom(newClassRoom);
-        Navigation.NavigateTo($"/classrooms/view");
+        var createdClassroom = await ClassRoomService.CreateClassroom(newClassRoom);
+        Navigation.NavigateTo($"/classroom/{createdClassroom.Code}");
     }
     
     protected class CreatFormData
