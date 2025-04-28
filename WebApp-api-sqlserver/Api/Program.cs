@@ -29,12 +29,13 @@ builder.Services.AddScoped<ISubjectService, SubjectService>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
 
 // Configure Serilog
+var logFolder = builder.Configuration.GetConnectionString("Log_Folder_Path");
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()  // Log to console
     //log everything to a file
-    .WriteTo.File("logs/general/api_log-.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.File($"{logFolder}/general/api_log-.txt", rollingInterval: RollingInterval.Day)
     //log errors to a separate file as well
-    .WriteTo.File("logs/errors/api_log-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Error)  
+    .WriteTo.File($"{logFolder}/errors/api_log-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Error)  
     .CreateLogger();
 
 // Add Serilog to .NET logging system

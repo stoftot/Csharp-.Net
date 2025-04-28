@@ -29,6 +29,7 @@ public class ClassroomController
         }
         catch (IdentifierDidntMatchAnyEntriesException e)
         {
+            logger.LogError(e, "An error occured while processing GetOne");
             return NotFound();
         }
         catch (MultipleEntriesWhitSameIdentifierException e)
