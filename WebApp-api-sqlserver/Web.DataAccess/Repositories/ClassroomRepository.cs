@@ -24,4 +24,9 @@ public class ClassroomRepository(HttpClient httpClient, IConfiguration configura
     {
         return CreateAsync<ViewClassroomDto,CreateClassroomDto>(Endpoint, dto);
     }
+
+    public Task UpdateClassroom(string code, UpdateClassroomDto dto)
+    {
+        return UpdateAsync(Endpoint, code, dto);
+    }
 }

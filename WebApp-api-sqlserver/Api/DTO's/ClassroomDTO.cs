@@ -26,3 +26,13 @@ public class CreateClassroomDto
         return new global::Api.Service.DTO_s.CreateClassroomDto(Code, Capacity);
     }
 }
+
+public class UpdateClassroomDto
+{
+    public required int Capacity { get; set; }
+
+    public global::Api.Service.DTO_s.UpdateClassRoomDto ConvertToServiceDto(string code)
+    {
+        return new global::Api.Service.DTO_s.UpdateClassRoomDto(code, Capacity);
+    }
+}

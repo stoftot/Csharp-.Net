@@ -1,4 +1,5 @@
 ﻿using Api.Service.DTO_s;
+using Api.Service.Exceptions;
 using Api.Service.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Web.DataAccess.Models;
@@ -42,5 +43,28 @@ public class ClassroomRepository(UniversityDbContext context) : IClassroomReposi
             Code = newClassRoom.Entity.Code,
             Capacity = newClassRoom.Entity.Capacity
         };
+    }
+
+    public async Task UpdateClassroom(UpdateClassRoomDto dto)
+    {
+        var currentClassroom = await context.Classrooms
+            .Where(c => c.Code == Classroom.NormalizeCode(dto.Code))
+            .SingleOrDefaultAsync() 
+                               ?? throw new IdentifierDidntMatchAnyEntriesException
+                                   ($"There is no class room whit the following code: {dto.Code}", dto.Code);
+
+        currentClassroom.Capacity = dto.Capacity;
+        await context.SaveChangesAsync();
+    }
+
+    public async Task DeleteClassroom(string code)
+    {
+        var classroom = await context.Classrooms
+                                   .Where(c => c.Code == Classroom.NormalizeCode(code))
+                                   .SingleOrDefaultAsync() 
+                               ?? throw new IdentifierDidntMatchAnyEntriesException
+                                   ($"There is no class room whit the following code: {code}", code);
+        context.Remove(classroom);
+        await context.SaveChangesAsync();
     }
 }

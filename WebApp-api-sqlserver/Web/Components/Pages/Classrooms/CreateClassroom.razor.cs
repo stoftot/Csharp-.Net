@@ -7,17 +7,17 @@ namespace Web.Components.Pages.Classrooms;
 
 public class CreateClassroomBase : ComponentBase
 {
-    [Inject] private NavigationManager Navigation { get; set; } = null!;
-    [Inject] private IClassRoomService ClassRoomService { get; set; } = null!;
+    [Inject] protected NavigationManager Navigation { get; set; } = null!;
+    [Inject] protected IClassRoomService ClassRoomService { get; set; } = null!;
 
     [SupplyParameterFromForm(FormName = "CreateClassroom")]
     protected CreatFormData FormData { get; set; } = new();
     
-    protected async Task HandleSubmit()
+    protected async Task CreateClassRoom()
     {
         var newClassRoom = new CreateClassroomDto(FormData.Code, FormData.Capacity);
-        await ClassRoomService.CreateClassroom(newClassRoom);
-        Navigation.NavigateTo($"/classrooms/view");
+        var createdClassroom = await ClassRoomService.CreateClassroom(newClassRoom);
+        Navigation.NavigateTo($"/classroom/{createdClassroom.Code}");
     }
     
     protected class CreatFormData

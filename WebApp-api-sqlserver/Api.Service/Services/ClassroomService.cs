@@ -9,6 +9,8 @@ public interface IClassRoomService
     public Task<IEnumerable<GetClassroomDto>> GetAllClassrooms();
     public Task<GetClassroomDto> GetClassroom(string code);
     public Task<GetClassroomDto> CreateClassroom(CreateClassroomDto dto);
+    public Task UpdateClassroom(UpdateClassRoomDto dto);
+    public Task DeleteClassroom(string code);
 }
 
 public class ClassroomService(IClassroomRepository classroomRepository) : IClassRoomService
@@ -22,10 +24,9 @@ public class ClassroomService(IClassroomRepository classroomRepository) : IClass
     {
         try
         {
-            var classRoom = await classroomRepository.GetClassroom(code);
-            if (classRoom == null)
-                throw new IdentifierDidntMatchAnyEntriesException
-                    ($"There is no class room whit the following code: {code}", code);
+            var classRoom = await classroomRepository.GetClassroom(code)
+                            ?? throw new IdentifierDidntMatchAnyEntriesException
+                                ($"There is no class room whit the following code: {code}", code);
             return classRoom!;
         }
         catch (InvalidOperationException e)
@@ -38,5 +39,15 @@ public class ClassroomService(IClassroomRepository classroomRepository) : IClass
     public Task<GetClassroomDto> CreateClassroom(CreateClassroomDto dto)
     {
         return classroomRepository.CreateClassroom(dto);
+    }
+
+    public async Task UpdateClassroom(UpdateClassRoomDto dto)
+    {
+        await classroomRepository.UpdateClassroom(dto);
+    }
+
+    public async Task DeleteClassroom(string code)
+    {
+        await classroomRepository.DeleteClassroom(code);
     }
 }
